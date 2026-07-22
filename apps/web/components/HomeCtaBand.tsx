@@ -9,22 +9,23 @@ export function HomeCtaBand() {
   const { ui } = useLocale();
 
   return (
-    <Reveal className="section-frame">
-      <div className="bezel bezel--cta">
-        <section className="bezel__core home-cta-band" aria-label="NHÀ Bar">
-          <div className="home-cta-band__copy">
-            <p className="section-label">{ui.cafeBarMyAn}</p>
-            <h2 className="section-title">{VENUE.addressShort}</h2>
-            <p className="section-support">{ui.home.ctaSupport}</p>
-          </div>
-          <div className="cta-row">
-            <PrimaryButton href="/contact">{ui.directions}</PrimaryButton>
-            <PrimaryButton href="/events" variant="ghost">
-              {ui.home.eventSchedule}
-            </PrimaryButton>
-          </div>
-        </section>
-      </div>
+    <Reveal className="section-frame" mode="clip">
+      <section
+        className="home-cta-band home-cta-band--stamp"
+        aria-label="NHÀ Bar"
+      >
+        <div className="home-cta-band__copy">
+          <p className="section-label">{ui.cafeBarMyAn}</p>
+          <h2 className="section-title">{VENUE.addressShort}</h2>
+          <p className="section-support">{ui.home.ctaSupport}</p>
+        </div>
+        <div className="cta-row">
+          <PrimaryButton href="/contact">{ui.directions}</PrimaryButton>
+          <PrimaryButton href="/events" variant="ghost">
+            {ui.home.eventSchedule}
+          </PrimaryButton>
+        </div>
+      </section>
     </Reveal>
   );
 }

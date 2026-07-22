@@ -19,18 +19,22 @@ export function PromotionsView({
     <div className="page-screen">
       <div className="container stack-page">
         <PageHero
+          variant="promos"
+          kicker={ui.promos.asideMain}
           title={ui.promos.title}
           lead={ui.promos.lead}
           aside={
-            <p className="page-hero__aside-text">
-              {ui.promos.asideMain}
-              <span>{ui.venue.hoursLabel}</span>
-            </p>
+            <div className="page-hero__ticket">
+              <p className="page-hero__aside-text">
+                {ui.promos.asideMain}
+                <span>{ui.venue.hoursLabel}</span>
+              </p>
+            </div>
           }
         />
 
         {promotions.length > 0 ? (
-          <div className="promo-bento">
+          <div className="promo-bento promo-bento--stamp">
             {promotions.map((promo, index) => (
               <Reveal
                 key={promo.id}

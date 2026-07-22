@@ -96,6 +96,25 @@ export function formatEventDate(iso: string, locale: Locale = "vi"): string {
   }).format(new Date(iso));
 }
 
+/** Weekday + calendar day (no clock) for nightboard when-row. */
+export function formatEventDayLabel(iso: string, locale: Locale = "vi"): string {
+  return new Intl.DateTimeFormat(localeToBcp47(locale), {
+    timeZone: "Asia/Ho_Chi_Minh",
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+  }).format(new Date(iso));
+}
+
+/** Clock-only label for nightboard cards (time guests decide on). */
+export function formatEventTime(iso: string, locale: Locale = "vi"): string {
+  return new Intl.DateTimeFormat(localeToBcp47(locale), {
+    timeZone: "Asia/Ho_Chi_Minh",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(new Date(iso));
+}
+
 export function statusBadgeLabel(
   status: EventStatusLabel,
   locale: Locale = "vi",

@@ -250,7 +250,7 @@ const UI: Record<Locale, UiCopy> = {
       menuSupport: "Gợi vị — café ban ngày, pour về đêm. Xem full tại Menu.",
       menuCta: "Xem menu đầy đủ",
       upcomingTitle: "Lịch sắp tới",
-      upcomingSupport: "Những đêm tiếp theo trên sàn — lưu lịch trước, khỏi lỡ drop.",
+      upcomingSupport: "Giờ mở sàn, lineup, ưu đãi đêm. Lưu lịch trước khi drop kín chỗ.",
       allEvents: "Tất cả sự kiện",
     },
     quotes: {
@@ -437,7 +437,7 @@ const UI: Record<Locale, UiCopy> = {
       menuSupport: "A taste — café by day, pours by night. Full list on Menu.",
       menuCta: "See full menu",
       upcomingTitle: "Coming up",
-      upcomingSupport: "The next nights on the floor — save the dates, don’t miss the drop.",
+      upcomingSupport: "Door time, lineup, and night offers. Save the date before it fills.",
       allEvents: "All events",
     },
     quotes: {
@@ -624,7 +624,7 @@ const UI: Record<Locale, UiCopy> = {
       menuSupport: "Вкус — кафе днём, pours ночью. Полный список в Меню.",
       menuCta: "Полное меню",
       upcomingTitle: "Скоро на сцене",
-      upcomingSupport: "Ближайшие вечера — сохраните даты, чтобы не пропустить.",
+      upcomingSupport: "Время, lineup и акции вечера. Сохраните дату, пока есть места.",
       allEvents: "Все события",
     },
     quotes: {

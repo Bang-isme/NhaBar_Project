@@ -20,7 +20,7 @@ const MENU: Record<Locale, MenuCategory[]> = {
     {
       id: "cafe",
       title: "Café ban ngày",
-      support: "Ngồi lâu, ánh đèn ấm — trước khi sàn bật.",
+      support: "Ngồi lâu, ánh đèn ấm. Trước khi sàn bật.",
       items: [
         { name: "Espresso / Americano", note: "Đậm, sạch", priceHint: "35k" },
         {
@@ -37,7 +37,7 @@ const MENU: Record<Locale, MenuCategory[]> = {
     {
       id: "pours",
       title: "Signature pours",
-      support: "Good Drinks — rõ vị, không phô.",
+      support: "Good Drinks: rõ vị, không phô.",
       items: [
         {
           name: "House Highball",
@@ -89,7 +89,7 @@ const MENU: Record<Locale, MenuCategory[]> = {
     {
       id: "cafe",
       title: "Daytime café",
-      support: "Stay long under warm light — before the floor turns up.",
+      support: "Stay long under warm light, before the floor turns up.",
       items: [
         { name: "Espresso / Americano", note: "Bold, clean", priceHint: "35k" },
         {
@@ -106,7 +106,7 @@ const MENU: Record<Locale, MenuCategory[]> = {
     {
       id: "pours",
       title: "Signature pours",
-      support: "Good Drinks — clear flavor, no fluff.",
+      support: "Good Drinks: clear flavor, no fluff.",
       items: [
         {
           name: "House Highball",
@@ -158,7 +158,7 @@ const MENU: Record<Locale, MenuCategory[]> = {
     {
       id: "cafe",
       title: "Кафе днём",
-      support: "Сидите долго при мягком свете — до ночного темпа.",
+      support: "Сидите долго при мягком свете, до ночного темпа.",
       items: [
         { name: "Espresso / Americano", note: "Плотный, чистый", priceHint: "35k" },
         {
@@ -175,7 +175,7 @@ const MENU: Record<Locale, MenuCategory[]> = {
     {
       id: "pours",
       title: "Signature pours",
-      support: "Good Drinks — чистый вкус.",
+      support: "Good Drinks: чистый вкус.",
       items: [
         {
           name: "House Highball",

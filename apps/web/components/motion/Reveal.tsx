@@ -25,7 +25,7 @@ export function Reveal({
   className,
   y = 28,
   delay = 0,
-  once = false,
+  once = true,
   mode = "rise",
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
@@ -85,14 +85,23 @@ export function Reveal({
       gsap.fromTo(el, fromVars, {
         ...toVars,
         onStart: () => el.classList.add("is-revealed"),
+        onComplete: () => {
+          if (mode === "clip") {
+            gsap.set(el, { clearProps: "clipPath" });
+          }
+        },
         scrollTrigger: {
           trigger: el,
-          start: "top 92%",
-          end: "bottom 8%",
-          toggleActions: "play reverse play reverse",
-          onLeaveBack: () => {
-            el.classList.remove("is-revealed");
-          },
+          start: "top 88%",
+          once,
+          toggleActions: once
+            ? "play none none none"
+            : "play reverse play reverse",
+          onLeaveBack: once
+            ? undefined
+            : () => {
+                el.classList.remove("is-revealed");
+              },
         },
       });
     },

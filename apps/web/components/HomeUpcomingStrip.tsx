@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { EventCard } from "@/components/EventCard";
-import { AutoRail } from "@/components/motion/AutoRail";
 import { Reveal } from "@/components/motion/Reveal";
 import { useLocale } from "@/components/LocaleProvider";
 import type { EventListItem } from "@/lib/featured-event";
@@ -13,7 +12,7 @@ export function HomeUpcomingStrip({ events }: { events: EventListItem[] }) {
 
   return (
     <section
-      className="home-upcoming section-block section-frame"
+      className="home-upcoming section-block section-frame section-frame--fit"
       aria-labelledby="home-upcoming-heading"
     >
       <Reveal className="section-head section-head--row" mode="slide">
@@ -31,22 +30,19 @@ export function HomeUpcomingStrip({ events }: { events: EventListItem[] }) {
           </span>
         </Link>
       </Reveal>
-      <AutoRail
-        className="home-upcoming__rail"
-        label={ui.home.upcomingTitle}
-        intervalMs={5200}
-      >
+
+      <div className="home-upcoming__board">
         {events.map((event, index) => (
-          <div
+          <Reveal
             key={event.id}
-            className="home-upcoming__slide"
-            data-rail-item
-            style={{ ["--rail-i" as string]: index }}
+            className="home-upcoming__cell"
+            delay={index * 0.07}
+            mode={index === 0 ? "clip" : "rise"}
           >
-            <EventCard event={event} />
-          </div>
+            <EventCard event={event} variant="nightboard" />
+          </Reveal>
         ))}
-      </AutoRail>
+      </div>
     </section>
   );
 }

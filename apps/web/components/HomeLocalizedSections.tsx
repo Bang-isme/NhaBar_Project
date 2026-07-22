@@ -87,19 +87,17 @@ export function HomeLocalizedSections({
               className="home-gallery__slide"
               data-scale-item
             >
-              <div className="bezel home-gallery__bezel">
-                <div className="bezel__core home-gallery__item">
-                  <Image
-                    src={shot.url}
-                    alt={ui.home.galleryShots[index] ?? shot.alt}
-                    width={720}
-                    height={480}
-                    className="home-gallery__img"
-                  />
-                  <figcaption>
-                    {ui.home.galleryShots[index] ?? shot.alt}
-                  </figcaption>
-                </div>
+              <div className="home-gallery__item home-gallery__item--stamp">
+                <Image
+                  src={shot.url}
+                  alt={ui.home.galleryShots[index] ?? shot.alt}
+                  width={720}
+                  height={480}
+                  className="home-gallery__img"
+                />
+                <figcaption>
+                  {ui.home.galleryShots[index] ?? shot.alt}
+                </figcaption>
               </div>
             </figure>
           ))}

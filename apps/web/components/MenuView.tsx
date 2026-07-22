@@ -14,17 +14,21 @@ export function MenuView() {
     <div className="page-screen">
       <div className="container stack-page">
         <PageHero
+          variant="menu"
+          kicker={ui.menuKicker}
           title={ui.menuPage.title}
           lead={ui.menuPage.lead}
           aside={
-            <p className="page-hero__aside-text">
-              {ui.menuPage.asideMain}
-              <span>{VENUE.addressShort}</span>
-            </p>
+            <div className="page-hero__ledger">
+              <p className="page-hero__aside-text">
+                {ui.menuPage.asideMain}
+                <span>{VENUE.addressShort}</span>
+              </p>
+            </div>
           }
         />
 
-        <div className="menu-board">
+        <div className="menu-board menu-board--ledger">
           {categories.map((category, index) => (
             <Reveal key={category.id} delay={index * 0.05}>
               <section

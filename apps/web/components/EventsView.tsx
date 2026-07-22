@@ -21,17 +21,24 @@ export function EventsView({
     <div className="page-screen">
       <div className="container stack-page">
         <PageHero
+          variant="events"
+          kicker={ui.events.upcoming}
           title={ui.events.title}
           lead={ui.events.lead}
           aside={
-            <p className="page-hero__aside-text">
-              {ui.events.asideMain}
-              <span>{ui.events.asideSub}</span>
-            </p>
+            <div className="page-hero__stamp">
+              <p className="page-hero__aside-text">
+                {ui.events.asideMain}
+                <span>{ui.events.asideSub}</span>
+              </p>
+            </div>
           }
         />
 
-        <section aria-labelledby="upcoming-heading" className="events-section">
+        <section
+          aria-labelledby="upcoming-heading"
+          className="events-section events-section--magazine"
+        >
           <Reveal className="section-head" mode="slide">
             <div className="section-head__copy">
               <h2 id="upcoming-heading" className="section-title">
