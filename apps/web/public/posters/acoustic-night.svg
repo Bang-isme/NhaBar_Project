@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000" fill="none">
+  <rect width="800" height="1000" fill="#141010"/>
+  <circle cx="200" cy="760" r="220" fill="#C59D73" fill-opacity="0.1"/>
+  <rect x="40" y="40" width="720" height="920" stroke="#C59D73" stroke-opacity="0.5" stroke-width="2"/>
+  <text x="80" y="180" fill="#C59D73" font-family="Arial, sans-serif" font-size="26" letter-spacing="9">UNPLUGGED NIGHT</text>
+  <text x="80" y="330" fill="#FFF7ED" font-family="Arial, sans-serif" font-size="62" font-weight="700">ACOUSTIC</text>
+  <text x="80" y="410" fill="#FFF7ED" font-family="Arial, sans-serif" font-size="62" font-weight="700">IN NHA</text>
+  <text x="80" y="490" fill="#C59D73" font-family="Arial, sans-serif" font-size="34" letter-spacing="4">LIVE SET · 20:00</text>
+  <text x="80" y="880" fill="#C4B5A8" font-family="Arial, sans-serif" font-size="24">15.08 · 20:00 · NHA BAR</text>
+</svg>

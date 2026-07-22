@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <rect width="1200" height="800" fill="#060504"/>
+  <defs>
+    <radialGradient id="crowd" cx="50%" cy="55%" r="50%">
+      <stop offset="0%" stop-color="#C59D73" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#060504" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="#0C0A09"/>
+  <ellipse cx="600" cy="480" rx="460" ry="160" fill="url(#crowd)"/>
+  <g fill="#C59D73" fill-opacity="0.22">
+    <ellipse cx="280" cy="520" rx="48" ry="70"/>
+    <ellipse cx="380" cy="500" rx="42" ry="78"/>
+    <ellipse cx="470" cy="530" rx="50" ry="66"/>
+    <ellipse cx="580" cy="505" rx="44" ry="74"/>
+    <ellipse cx="690" cy="525" rx="52" ry="68"/>
+    <ellipse cx="800" cy="510" rx="46" ry="72"/>
+    <ellipse cx="900" cy="535" rx="40" ry="64"/>
+  </g>
+  <rect x="200" y="220" width="800" height="8" rx="2" fill="#E11D48" fill-opacity="0.25"/>
+  <circle cx="600" cy="200" r="70" fill="#C59D73" fill-opacity="0.2"/>
+  <text x="200" y="680" fill="#E8DCC8" font-family="Georgia, serif" font-size="34" letter-spacing="6">LATE SESSION</text>
+</svg>

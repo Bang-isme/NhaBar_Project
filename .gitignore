@@ -1,0 +1,39 @@
+# Dependencies & builds
+node_modules/
+**/node_modules/
+.next/
+**/.next/
+dist/
+**/dist/
+coverage/
+**/coverage/
+out/
+**/.turbo/
+*.tsbuildinfo
+
+# Secrets & local env (keep .env.example)
+.env
+.env.*
+!.env.example
+
+# Logs & OS
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# Local databases
+**/prisma/*.db
+**/prisma/*.db-journal
+**/prisma/dev.db*
+
+# Runtime uploads (mock art under apps/web/public/uploads is tracked)
+apps/api/uploads/
+/uploads/
+!apps/web/public/uploads/
+
+# IDE / agent noise
+.idea/
+.vscode/
+.codex/
+*.swp

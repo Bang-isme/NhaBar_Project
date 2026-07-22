@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000" fill="none">
+  <rect width="800" height="1000" fill="#16110F"/>
+  <circle cx="620" cy="220" r="160" fill="#C59D73" fill-opacity="0.12"/>
+  <text x="80" y="200" fill="#C59D73" font-family="Arial, sans-serif" font-size="24" letter-spacing="10">RESIDENT NIGHT</text>
+  <text x="80" y="340" fill="#FFF7ED" font-family="Arial, sans-serif" font-size="58" font-weight="700">LATE</text>
+  <text x="80" y="420" fill="#FFF7ED" font-family="Arial, sans-serif" font-size="58" font-weight="700">SESSION</text>
+  <text x="80" y="860" fill="#C4B5A8" font-family="Arial, sans-serif" font-size="22">08.08 · 21:00 · NHÀ BAR</text>
+</svg>

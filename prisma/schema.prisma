@@ -1,0 +1,108 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  // Sprint 1 local fallback: SQLite when Docker Postgres pull/auth is unavailable.
+  // Production / Sprint 2+ target remains PostgreSQL (see docs + docker-compose.yml).
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum EventStatus {
+  draft
+  published
+  hidden
+}
+
+model User {
+  id           String       @id @default(uuid())
+  email        String       @unique
+  passwordHash String
+  displayName  String
+  role         String       @default("ADMIN")
+  createdAt    DateTime     @default(now())
+  events       Event[]
+  promotions   Promotion[]
+  media        MediaAsset[]
+}
+
+model Event {
+  id           String        @id @default(uuid())
+  slug         String        @unique
+  title        String
+  description  String?
+  startsAt     DateTime
+  endsAt       DateTime?
+  posterUrl    String?
+  status       EventStatus   @default(draft)
+  isFeatured   Boolean       @default(false)
+  collaborator String?
+  createdById  String
+  createdBy    User          @relation(fields: [createdById], references: [id])
+  lineup       EventArtist[]
+  media        MediaAsset[]
+  promotions   EventPromotion[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@index([status, startsAt])
+}
+
+model Artist {
+  id        String        @id @default(uuid())
+  stageName String        @unique
+  bio       String?
+  socialUrl String?
+  avatarUrl String?
+  events    EventArtist[]
+  createdAt DateTime      @default(now())
+}
+
+model EventArtist {
+  id        String @id @default(uuid())
+  eventId   String
+  artistId  String
+  roleLabel String
+  sortOrder Int    @default(0)
+  event     Event  @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  artist    Artist @relation(fields: [artistId], references: [id])
+
+  @@unique([eventId, artistId])
+  @@index([eventId, sortOrder])
+}
+
+model Promotion {
+  id          String    @id @default(uuid())
+  title       String
+  description String?
+  isActive    Boolean   @default(true)
+  startsAt    DateTime
+  endsAt      DateTime?
+  bannerUrl   String?
+  createdById String
+  createdBy   User      @relation(fields: [createdById], references: [id])
+  events      EventPromotion[]
+}
+
+model EventPromotion {
+  eventId     String
+  promotionId String
+  event       Event     @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  promotion   Promotion @relation(fields: [promotionId], references: [id], onDelete: Cascade)
+
+  @@id([eventId, promotionId])
+  @@index([promotionId])
+}
+
+model MediaAsset {
+  id           String   @id @default(uuid())
+  eventId      String
+  url          String
+  altText      String?
+  sortOrder    Int      @default(0)
+  uploadedById String
+  event        Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  uploadedBy   User     @relation(fields: [uploadedById], references: [id])
+  createdAt    DateTime @default(now())
+}

@@ -1,0 +1,30 @@
+{
+  "name": "nhabar-project",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:web": "npm run dev -w @nhabar/web",
+    "dev:api": "npm run start:dev -w @nhabar/api",
+    "lint": "npm run lint -w @nhabar/web && npm run lint -w @nhabar/api",
+    "test": "npm run test -w @nhabar/api && npm run test -w @nhabar/web",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:seed": "prisma db seed"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "prisma": "^6.5.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.5.0",
+    "bcryptjs": "^3.0.3"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
+  "packageManager": "pnpm@11.7.0+sha512.19cc852c120c7125760f2443ee6be0ca5b40f9f50598de1a09a1f177503e010e57c23c77646e01e761de59bf874fb22a3398c33ab9691fc13eb946b6f0f4d620"
+}

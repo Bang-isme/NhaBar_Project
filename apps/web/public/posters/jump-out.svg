@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000" fill="none">
+  <rect width="800" height="1000" fill="#0E0B0A"/>
+  <rect x="40" y="40" width="720" height="920" stroke="#C59D73" stroke-width="2"/>
+  <text x="80" y="180" fill="#C59D73" font-family="Arial, sans-serif" font-size="28" letter-spacing="8">NHÀ BAR</text>
+  <text x="80" y="320" fill="#FFF7ED" font-family="Arial, sans-serif" font-size="64" font-weight="700">JUMP OUT</text>
+  <text x="80" y="400" fill="#FFF7ED" font-family="Arial, sans-serif" font-size="64" font-weight="700">DA HOUSE</text>
+  <text x="80" y="480" fill="#FB923C" font-family="Arial, sans-serif" font-size="36" letter-spacing="4">RAPSHOW</text>
+  <text x="80" y="880" fill="#C4B5A8" font-family="Arial, sans-serif" font-size="24">10.07 · 19:00 · À N´NG</text>
+</svg>

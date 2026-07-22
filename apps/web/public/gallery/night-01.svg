@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <rect width="1200" height="800" fill="#0A0807"/>
+  <defs>
+    <radialGradient id="g1" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#C59D73" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#0A0807" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1A1410"/>
+      <stop offset="100%" stop-color="#0D0B0A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bar)"/>
+  <ellipse cx="600" cy="320" rx="420" ry="220" fill="url(#g1)"/>
+  <rect x="120" y="480" width="960" height="28" rx="4" fill="#C59D73" fill-opacity="0.2"/>
+  <rect x="180" y="420" width="140" height="60" rx="8" fill="#C59D73" fill-opacity="0.35"/>
+  <rect x="360" y="400" width="90" height="80" rx="8" fill="#E11D48" fill-opacity="0.22"/>
+  <rect x="500" y="430" width="120" height="50" rx="8" fill="#C59D73" fill-opacity="0.28"/>
+  <circle cx="860" cy="260" r="48" fill="#C59D73" fill-opacity="0.25"/>
+  <circle cx="920" cy="300" r="22" fill="#FFF7ED" fill-opacity="0.12"/>
+  <text x="160" y="620" fill="#E8DCC8" font-family="Georgia, serif" font-size="36" letter-spacing="4">WARM NIGHT</text>
+</svg>

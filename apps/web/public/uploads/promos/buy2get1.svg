@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" fill="none">
+  <rect width="1200" height="750" fill="#0A0807"/>
+  <defs>
+    <radialGradient id="g" cx="78%" cy="18%" r="55%">
+      <stop offset="0%" stop-color="#C59D73" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#0A0807" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#g)"/>
+  <text x="72" y="120" fill="#C59D73" font-family="Be Vietnam Pro, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="8">ØU √I</text>
+  <text x="72" y="280" fill="#FFF7ED" font-family="Be Vietnam Pro, Arial, sans-serif" font-size="72" font-weight="800">BUY 2</text>
+  <text x="72" y="360" fill="#FFF7ED" font-family="Be Vietnam Pro, Arial, sans-serif" font-size="72" font-weight="800">GET 1</text>
+  <text x="72" y="460" fill="#C59D73" font-family="Georgia, serif" font-size="36" letter-spacing="4">WATCH NIGHT</text>
+  <rect x="72" y="520" width="160" height="2" fill="#C59D73" fill-opacity="0.55"/>
+  <text x="72" y="580" fill="#C4B5A8" font-family="Arial, sans-serif" font-size="22">Late session ∑ hœi bartender</text>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <rect width="1200" height="800" fill="#050505"/>
+  <defs>
+    <radialGradient id="alley" cx="50%" cy="60%" r="55%">
+      <stop offset="0%" stop-color="#C59D73" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#050505" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="#090807"/>
+  <ellipse cx="600" cy="500" rx="300" ry="180" fill="url(#alley)"/>
+  <path d="M200 100 L200 700 M1000 100 L1000 700" stroke="#C59D73" stroke-opacity="0.15" stroke-width="2"/>
+  <rect x="480" y="260" width="240" height="320" rx="6" fill="#12100E" stroke="#C59D73" stroke-opacity="0.4"/>
+  <text x="520" y="430" fill="#C59D73" font-family="Be Vietnam Pro, sans-serif" font-size="42" font-weight="800" letter-spacing="8">NHÀ</text>
+  <text x="200" y="740" fill="#E8DCC8" font-family="Georgia, serif" font-size="28" letter-spacing="4">Mø AN · À N´NG</text>
+</svg>

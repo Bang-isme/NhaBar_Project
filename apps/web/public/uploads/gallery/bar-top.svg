@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <rect width="1200" height="800" fill="#050505"/>
+  <defs>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#C59D73" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#C59D73" stop-opacity="0.08"/>
+    </linearGradient>
+    <radialGradient id="pool" cx="50%" cy="70%" r="40%">
+      <stop offset="0%" stop-color="#C59D73" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#050505" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="#0E0C0A"/>
+  <ellipse cx="600" cy="620" rx="420" ry="90" fill="url(#pool)"/>
+  <path d="M420 220 L480 560 L720 560 L780 220 Z" fill="url(#glass)" stroke="#E8DCC8" stroke-opacity="0.2"/>
+  <ellipse cx="600" cy="220" rx="180" ry="24" fill="#FFF7ED" fill-opacity="0.12"/>
+  <circle cx="560" cy="360" r="10" fill="#FFF7ED" fill-opacity="0.35"/>
+  <circle cx="640" cy="420" r="7" fill="#FFF7ED" fill-opacity="0.25"/>
+  <rect x="160" y="560" width="880" height="18" rx="3" fill="#C59D73" fill-opacity="0.16"/>
+  <text x="160" y="680" fill="#E8DCC8" font-family="Georgia, serif" font-size="34" letter-spacing="6">BAR TOP</text>
+</svg>

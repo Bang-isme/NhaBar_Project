@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" fill="none">
+  <rect width="1200" height="750" fill="#0A0807"/>
+  <defs>
+    <radialGradient id="h" cx="20%" cy="80%" r="60%">
+      <stop offset="0%" stop-color="#E11D48" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#0A0807" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#h)"/>
+  <text x="72" y="120" fill="#C59D73" font-family="Be Vietnam Pro, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="8">¯U ÃI</text>
+  <text x="72" y="290" fill="#FFF7ED" font-family="Be Vietnam Pro, Arial, sans-serif" font-size="68" font-weight="800">HAPPY</text>
+  <text x="72" y="370" fill="#FFF7ED" font-family="Be Vietnam Pro, Arial, sans-serif" font-size="68" font-weight="800">HOUR</text>
+  <text x="72" y="470" fill="#C59D73" font-family="Georgia, serif" font-size="42" letter-spacing="3">16:00  19:00</text>
+  <rect x="72" y="520" width="160" height="2" fill="#C59D73" fill-opacity="0.55"/>
+  <text x="72" y="580" fill="#C4B5A8" font-family="Arial, sans-serif" font-size="22">Selected drinks · chill tr°Ûc sàn</text>
+</svg>

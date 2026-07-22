@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <rect width="1200" height="800" fill="#050505"/>
+  <defs>
+    <radialGradient id="ember" cx="70%" cy="30%" r="45%">
+      <stop offset="0%" stop-color="#E11D48" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#050505" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bronze" cx="30%" cy="40%" r="40%">
+      <stop offset="0%" stop-color="#C59D73" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#050505" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="#0A0908"/>
+  <ellipse cx="360" cy="300" rx="280" ry="200" fill="url(#bronze)"/>
+  <ellipse cx="820" cy="240" rx="240" ry="180" fill="url(#ember)"/>
+  <rect x="180" y="480" width="840" height="120" rx="8" fill="#12100E" stroke="#C59D73" stroke-opacity="0.25"/>
+  <circle cx="320" cy="540" r="28" fill="#C59D73" fill-opacity="0.35"/>
+  <circle cx="420" cy="540" r="28" fill="#E11D48" fill-opacity="0.28"/>
+  <circle cx="520" cy="540" r="28" fill="#C59D73" fill-opacity="0.22"/>
+  <text x="180" y="680" fill="#E8DCC8" font-family="Georgia, serif" font-size="34" letter-spacing="6">POUR NIGHT</text>
+</svg>

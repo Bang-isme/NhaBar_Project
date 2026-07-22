@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <rect width="1200" height="800" fill="#050505"/>
+  <defs>
+    <radialGradient id="stage" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#C59D73" stop-opacity="0.42"/>
+      <stop offset="70%" stop-color="#E11D48" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#050505" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="#0B0A09"/>
+  <ellipse cx="600" cy="340" rx="340" ry="200" fill="url(#stage)"/>
+  <rect x="250" y="480" width="700" height="24" rx="4" fill="#C59D73" fill-opacity="0.2"/>
+  <rect x="480" y="280" width="240" height="160" rx="8" fill="#12100E" stroke="#C59D73" stroke-opacity="0.3"/>
+  <circle cx="600" cy="340" r="36" fill="#E11D48" fill-opacity="0.35"/>
+  <text x="250" y="620" fill="#E8DCC8" font-family="Georgia, serif" font-size="34" letter-spacing="6">FLOOR GLOW</text>
+</svg>
