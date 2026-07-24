@@ -314,6 +314,7 @@ const UI: Record<Locale, UiCopy> = {
       vibeValue: "Chillin’ & Warm Space · Good Music · Good Drinks",
       openMaps: "Mở Google Maps",
       facebook: "Facebook NHÀ Bar",
+      followUs: "Theo dõi chúng tôi qua:",
       mapTitle: "Bản đồ NHÀ Bar",
       bandLabel: "Ghé nhà",
       bandTitle: "Mỹ An · Đà Nẵng",
@@ -322,6 +323,7 @@ const UI: Record<Locale, UiCopy> = {
     },
     footer: {
       facebook: "Facebook NHÀ Bar",
+      followUs: "Theo dõi chúng tôi qua:",
       city: "Mỹ An · Đà Nẵng",
     },
     eventDetail: {

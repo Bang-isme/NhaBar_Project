@@ -5,6 +5,12 @@ import { BrandLogo } from "@/components/BrandLogo";
 import { useLocale } from "@/components/LocaleProvider";
 import { NAV_ITEMS } from "@/lib/i18n";
 import { VENUE } from "@/lib/venue";
+import {
+  IconFacebook,
+  IconInstagram,
+  IconTikTok,
+  IconMapPin,
+} from "@/components/icons/AppIcons";
 
 export function SiteFooter() {
   const { ui } = useLocale();
@@ -36,11 +42,53 @@ export function SiteFooter() {
         <div className="site-footer__meta">
           <p className="site-footer__line">{VENUE.addressShort}</p>
           <p className="site-footer__line">{ui.venue.hoursLabel}</p>
-          <p className="site-footer__line">
-            <a href={VENUE.facebookUrl} target="_blank" rel="noreferrer">
-              {ui.footer.facebook}
-            </a>
-          </p>
+          <div className="site-footer__social">
+            <p className="site-footer__social-label">
+              {ui.contact.followUs}
+            </p>
+            <div className="social-icon-row social-icon-row--sm">
+              <a
+                href={VENUE.facebookUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="social-icon-btn"
+                aria-label="Facebook NHÀ Bar"
+                title="Facebook"
+              >
+                <IconFacebook size={16} />
+              </a>
+              <a
+                href={VENUE.instagramUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="social-icon-btn"
+                aria-label="Instagram NHÀ Bar"
+                title="Instagram"
+              >
+                <IconInstagram size={16} />
+              </a>
+              <a
+                href={VENUE.tiktokUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="social-icon-btn"
+                aria-label="TikTok NHÀ Bar"
+                title="TikTok"
+              >
+                <IconTikTok size={16} />
+              </a>
+              <a
+                href={VENUE.mapsUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="social-icon-btn social-icon-btn--maps"
+                aria-label="Google Maps"
+                title="Google Maps"
+              >
+                <IconMapPin size={16} />
+              </a>
+            </div>
+          </div>
         </div>
         <div className="site-footer__bottom">
           <span>{ui.footer.city}</span>

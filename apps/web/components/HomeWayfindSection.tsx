@@ -1,9 +1,14 @@
 "use client";
 
 import { VENUE } from "@/lib/venue";
-import { PrimaryButton } from "@/components/PrimaryButton";
 import { Reveal } from "@/components/motion/Reveal";
 import { useLocale } from "@/components/LocaleProvider";
+import {
+  IconFacebook,
+  IconInstagram,
+  IconTikTok,
+  IconMapPin,
+} from "@/components/icons/AppIcons";
 
 const MAP_EMBED =
   "https://maps.google.com/maps?q=35%20Ng%C3%B5%20Th%C3%AC%20S%C4%A9%2C%20M%E1%BB%B9%20An%2C%20%C4%90%C3%A0%20N%E1%BA%B5ng&t=&z=16&ie=UTF8&iwloc=&output=embed";
@@ -53,13 +58,53 @@ export function HomeWayfindSection() {
                 <dd>{ui.contact.vibeValue}</dd>
               </div>
             </dl>
-            <div className="cta-row contact-card__cta">
-              <PrimaryButton href={VENUE.mapsUrl}>
-                {ui.contact.openMaps}
-              </PrimaryButton>
-              <PrimaryButton href={VENUE.facebookUrl} variant="ghost">
-                {ui.contact.facebook}
-              </PrimaryButton>
+
+            <div className="contact-card__social">
+              <p className="contact-card__social-title">
+                {ui.contact.followUs}
+              </p>
+              <div className="social-icon-row">
+                <a
+                  href={VENUE.facebookUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social-icon-btn"
+                  aria-label="Facebook NHÀ Bar"
+                  title="Facebook"
+                >
+                  <IconFacebook size={18} />
+                </a>
+                <a
+                  href={VENUE.instagramUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social-icon-btn"
+                  aria-label="Instagram NHÀ Bar"
+                  title="Instagram"
+                >
+                  <IconInstagram size={18} />
+                </a>
+                <a
+                  href={VENUE.tiktokUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social-icon-btn"
+                  aria-label="TikTok NHÀ Bar"
+                  title="TikTok"
+                >
+                  <IconTikTok size={18} />
+                </a>
+                <a
+                  href={VENUE.mapsUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social-icon-btn social-icon-btn--maps"
+                  aria-label="Google Maps"
+                  title="Google Maps"
+                >
+                  <IconMapPin size={18} />
+                </a>
+              </div>
             </div>
           </div>
         </Reveal>
