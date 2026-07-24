@@ -83,9 +83,19 @@ export function SiteHeader() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    if (open) {
+      document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+      document.body.style.touchAction = "";
+      document.documentElement.style.overflow = "";
+    }
     return () => {
       document.body.style.overflow = "";
+      document.body.style.touchAction = "";
+      document.documentElement.style.overflow = "";
     };
   }, [open]);
 
@@ -129,7 +139,7 @@ export function SiteHeader() {
   return (
     <header
       ref={root}
-      className={scrolled ? "site-header is-scrolled" : "site-header"}
+      className={`site-header${scrolled ? " is-scrolled" : ""}${open ? " is-open" : ""}`}
     >
       <div className={`site-header__bar${open ? " is-open" : ""}`}>
         <div className="site-header__inner">
