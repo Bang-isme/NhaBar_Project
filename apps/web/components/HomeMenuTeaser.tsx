@@ -46,7 +46,10 @@ export function HomeMenuTeaser() {
               {lead.items.slice(0, 5).map((item) => (
                 <li key={item.name} className="menu-teaser-tile__row">
                   <span className="menu-teaser-tile__name">{item.name}</span>
-                  <span className="menu-teaser-tile__leader" aria-hidden="true" />
+                  <span
+                    className="menu-teaser-tile__leader"
+                    aria-hidden="true"
+                  />
                   {item.priceHint ? (
                     <span className="menu-teaser-tile__price">
                       {item.priceHint}
@@ -68,68 +71,54 @@ export function HomeMenuTeaser() {
         </Reveal>
 
         <div className="menu-teaser-grid__stack">
-          {sides.map((category, index) => {
-            const shown = category.items.slice(0, 3);
-            return (
-              <Reveal
-                key={category.id}
-                className="menu-teaser-tile hover-lift"
-                delay={0.1 + index * 0.08}
-                mode="rise"
+          {sides.map((category, index) => (
+            <Reveal
+              key={category.title}
+              className="menu-teaser-grid__side"
+              mode="rise"
+              delay={0.08 + index * 0.06}
+            >
+              <Link
+                className="menu-teaser-tile menu-teaser-tile--link"
+                href="/menu"
+                aria-label={`${category.title} - ${ui.home.menuCta}`}
               >
-                <Link
-                  href={`/menu#cat-${category.id}`}
-                  className="menu-teaser-tile__media-wrap"
-                >
-                  <div className="menu-teaser-tile__media">
-                    <Image
-                      src={
-                        category.coverUrl ||
-                        MOCK_MENU_ITEMS.find((i) => i.categoryId === category.id)
-                          ?.imageUrl ||
-                        "/uploads/hero/speakeasy-bar.png"
-                      }
-                      alt={category.name}
-                      fill
-                      sizes="(max-width: 900px) 100vw, 24vw"
-                      className="menu-teaser-tile__img"
-                    />
-                  </div>
-                  <div className="menu-teaser-tile__header">
-                    <p className="menu-teaser-tile__kicker">
-                      {ui.menuPage.categoryLabel}
-                    </p>
-                    <h3 className="menu-teaser-tile__title">{category.name}</h3>
-                  </div>
-                  <ul className="menu-teaser-tile__list">
-                    {shown.map((item) => (
-                      <li key={item.id}>
-                        <span className="menu-teaser-tile__item-name">
-                          {item.name}
+                <header className="menu-teaser-tile__head">
+                  <p className="section-label">{category.title}</p>
+                  <p className="menu-teaser-tile__support">
+                    {category.support}
+                  </p>
+                </header>
+                <ul className="menu-teaser-tile__list">
+                  {category.items.slice(0, 3).map((item) => (
+                    <li key={item.name} className="menu-teaser-tile__row">
+                      <span className="menu-teaser-tile__name">{item.name}</span>
+                      <span
+                        className="menu-teaser-tile__leader"
+                        aria-hidden="true"
+                      />
+                      {item.priceHint ? (
+                        <span className="menu-teaser-tile__price">
+                          {item.priceHint}
                         </span>
-                        {item.priceHint ? (
-                          <span className="menu-teaser-tile__price">
-                            {item.priceHint}
-                          </span>
-                        ) : null}
-                      </li>
-                    ))}
-                  </ul>
-                  <footer className="menu-teaser-tile__foot">
-                    <span>
-                      {shown.length} {ui.menuPage.itemsUnit}
-                    </span>
-                    <span className="menu-teaser-tile__cta">
-                      {ui.home.menuCta}
-                    </span>
-                  </footer>
-                  <span className="menu-teaser-tile__go" aria-hidden="true">
-                    <IconArrowUpRight size={14} />
+                      ) : null}
+                    </li>
+                  ))}
+                </ul>
+                <footer className="menu-teaser-tile__foot">
+                  <span>
+                    {Math.min(3, category.items.length)} {ui.menuPage.itemsUnit}
                   </span>
-                </Link>
-              </Reveal>
-            );
-          })}
+                  <span className="menu-teaser-tile__cta">
+                    {ui.home.menuCta}
+                  </span>
+                </footer>
+                <span className="menu-teaser-tile__go" aria-hidden="true">
+                  <IconArrowUpRight size={14} />
+                </span>
+              </Link>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
