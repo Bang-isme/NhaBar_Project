@@ -10,6 +10,7 @@ import { useLocale } from "@/components/LocaleProvider";
 import { MOCK_GALLERY } from "@/lib/mock-data";
 import type { PromotionItem } from "@/lib/featured-event";
 import { VENUE } from "@/lib/venue";
+import { IconArrowUpRight } from "@/components/icons/AppIcons";
 
 export function HomeLocalizedSections({
   promos,
@@ -33,9 +34,7 @@ export function HomeLocalizedSections({
           </div>
           <Link className="text-link section-head__link" href="/promotions">
             {ui.home.allPromos}
-            <span className="text-link__icon" aria-hidden="true">
-              ↗
-            </span>
+            <IconArrowUpRight size={13} className="text-link__icon" />
           </Link>
         </Reveal>
         {promos.length > 0 ? (

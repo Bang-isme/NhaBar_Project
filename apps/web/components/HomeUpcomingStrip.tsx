@@ -6,6 +6,8 @@ import { Reveal } from "@/components/motion/Reveal";
 import { useLocale } from "@/components/LocaleProvider";
 import type { EventListItem } from "@/lib/featured-event";
 
+import { IconArrowUpRight } from "@/components/icons/AppIcons";
+
 export function HomeUpcomingStrip({ events }: { events: EventListItem[] }) {
   const { ui } = useLocale();
   if (events.length === 0) return null;
@@ -25,9 +27,7 @@ export function HomeUpcomingStrip({ events }: { events: EventListItem[] }) {
         </div>
         <Link className="text-link section-head__link" href="/events">
           {ui.home.allEvents}
-          <span className="text-link__icon" aria-hidden="true">
-            ↗
-          </span>
+          <IconArrowUpRight size={13} className="text-link__icon" />
         </Link>
       </Reveal>
 

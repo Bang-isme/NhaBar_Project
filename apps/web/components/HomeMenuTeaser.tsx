@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Reveal } from "@/components/motion/Reveal";
 import { useLocale } from "@/components/LocaleProvider";
 import { getMenuTeaser } from "@/lib/menu";
+import { IconArrowUpRight } from "@/components/icons/AppIcons";
 
 export function HomeMenuTeaser() {
   const { locale, ui } = useLocale();
@@ -26,9 +27,7 @@ export function HomeMenuTeaser() {
         </div>
         <Link className="text-link section-head__link" href="/menu">
           {ui.home.menuCta}
-          <span className="text-link__icon" aria-hidden="true">
-            ↗
-          </span>
+          <IconArrowUpRight size={13} className="text-link__icon" />
         </Link>
       </Reveal>
 
