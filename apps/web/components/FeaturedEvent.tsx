@@ -11,6 +11,8 @@ import { EventOfferStrip } from "@/components/EventOfferStrip";
 import { Reveal } from "@/components/motion/Reveal";
 import { useLocale } from "@/components/LocaleProvider";
 
+import { IconArrowUpRight } from "@/components/icons/AppIcons";
+
 export function FeaturedEvent({ event }: { event: FeaturedEventData }) {
   const { locale, ui } = useLocale();
   const poster = event.posterUrl ?? "/posters/late-session.svg";
@@ -62,9 +64,7 @@ export function FeaturedEvent({ event }: { event: FeaturedEventData }) {
             <EventOfferStrip offers={event.offers} />
             <Link className="text-link" href={`/events/${event.slug}`}>
               {ui.featured.details}
-              <span className="text-link__icon" aria-hidden="true">
-                ↗
-              </span>
+              <IconArrowUpRight size={13} className="text-link__icon" />
             </Link>
           </div>
         </article>

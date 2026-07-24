@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { IconArrowUpRight } from "@/components/icons/AppIcons";
 
 type Props = {
   href: string;
@@ -17,7 +18,7 @@ export function PrimaryButton({
     <>
       <span className="btn__label">{children}</span>
       <span className="btn__icon" aria-hidden="true">
-        ↗
+        <IconArrowUpRight size={13} />
       </span>
     </>
   );

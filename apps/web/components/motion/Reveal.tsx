@@ -1,12 +1,8 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 import { prefersReducedMotion } from "@/lib/motion";
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 type RevealMode = "rise" | "clip" | "slide";
 
@@ -30,59 +26,67 @@ export function Reveal({
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
 
-  useGSAP(
-    () => {
-      const el = ref.current;
-      if (!el) return;
-      if (prefersReducedMotion()) {
-        gsap.set(el, { clearProps: "all", opacity: 1, y: 0, x: 0 });
-        el.classList.add("is-revealed");
-        return;
-      }
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
 
-      const fromVars: gsap.TweenVars =
-        mode === "clip"
-          ? {
-              opacity: 0,
-              y: y * 0.4,
-              clipPath: "inset(8% 4% 12% 4%)",
-              force3D: true,
-            }
-          : mode === "slide"
-            ? { opacity: 0, x: -20, y: 10, force3D: true }
-            : { opacity: 0, y: 20, force3D: true };
+    if (prefersReducedMotion()) {
+      gsap.set(el, { clearProps: "all", opacity: 1, y: 0, x: 0 });
+      el.classList.add("is-revealed");
+      return;
+    }
 
-      const toVars: gsap.TweenVars =
-        mode === "clip"
+    const fromVars: gsap.TweenVars =
+      mode === "clip"
+        ? {
+            opacity: 0,
+            y: y * 0.4,
+            clipPath: "inset(8% 4% 12% 4%)",
+            force3D: true,
+          }
+        : mode === "slide"
+          ? { opacity: 0, x: -24, y: 12, force3D: true }
+          : { opacity: 0, y: 26, force3D: true };
+
+    const toVars: gsap.TweenVars =
+      mode === "clip"
+        ? {
+            opacity: 1,
+            y: 0,
+            clipPath: "inset(0% 0% 0% 0%)",
+            duration: 0.7,
+            delay,
+            ease: "power2.out",
+            force3D: true,
+          }
+        : mode === "slide"
           ? {
               opacity: 1,
+              x: 0,
               y: 0,
-              clipPath: "inset(0% 0% 0% 0%)",
-              duration: 0.6,
+              duration: 0.65,
               delay,
               ease: "power2.out",
               force3D: true,
             }
-          : mode === "slide"
-            ? {
-                opacity: 1,
-                x: 0,
-                y: 0,
-                duration: 0.55,
-                delay,
-                ease: "power2.out",
-                force3D: true,
-              }
-            : {
-                opacity: 1,
-                y: 0,
-                duration: 0.5,
-                delay,
-                ease: "power2.out",
-                force3D: true,
-              };
+          : {
+              opacity: 1,
+              y: 0,
+              duration: 0.65,
+              delay,
+              ease: "power2.out",
+              force3D: true,
+            };
 
-      gsap.fromTo(el, fromVars, {
+    gsap.set(el, fromVars);
+
+    let hasRevealed = false;
+
+    const revealElement = () => {
+      if (hasRevealed && once) return;
+      hasRevealed = true;
+
+      gsap.to(el, {
         ...toVars,
         onStart: () => el.classList.add("is-revealed"),
         onComplete: () => {
@@ -90,23 +94,32 @@ export function Reveal({
             gsap.set(el, { clearProps: "clipPath" });
           }
         },
-        scrollTrigger: {
-          trigger: el,
-          start: "top 88%",
-          once,
-          toggleActions: once
-            ? "play none none none"
-            : "play reverse play reverse",
-          onLeaveBack: once
-            ? undefined
-            : () => {
-                el.classList.remove("is-revealed");
-              },
-        },
       });
-    },
-    { scope: ref, dependencies: [y, delay, once, mode] },
-  );
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            revealElement();
+            if (once) {
+              observer.unobserve(entry.target);
+            }
+          }
+        });
+      },
+      {
+        rootMargin: "0px 0px -10% 0px",
+        threshold: 0.08,
+      },
+    );
+
+    observer.observe(el);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [y, delay, once, mode]);
 
   return (
     <div ref={ref} className={className} data-reveal data-reveal-mode={mode}>
@@ -114,3 +127,5 @@ export function Reveal({
     </div>
   );
 }
+
+

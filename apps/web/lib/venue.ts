@@ -5,6 +5,7 @@ export const VENUE = {
   supportLine: "Chillin’ & Warm Space · Good Music · Good Drinks",
   address: "35 Ngõ Thì Sĩ, Mỹ An, Đà Nẵng, Vietnam",
   addressShort: "35 Ngõ Thì Sĩ, Mỹ An, Đà Nẵng",
+  addressCompact: "35 Ngõ Thì Sĩ · Mỹ An",
   hours: "11:00 AM – Late",
   hoursLabel: "11:00 AM – Late",
   mapsUrl:

@@ -13,10 +13,9 @@ const POSTER_BY_SLUG = new Map(
 );
 
 const DEFAULT_POSTERS = [
-  "/posters/late-session.svg",
-  "/posters/acoustic-night.svg",
-  "/posters/jump-out.svg",
-  "/posters/world-cup.svg",
+  "/uploads/hero/speakeasy-bar.png",
+  "/uploads/hero/acoustic-vinyl.png",
+  "/uploads/hero/signature-cocktail.png",
 ] as const;
 
 const DEFAULT_PROMOS = [

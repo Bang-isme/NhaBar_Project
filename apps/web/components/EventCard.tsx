@@ -12,6 +12,7 @@ import {
 } from "@/lib/featured-event";
 import { EventOfferStrip } from "@/components/EventOfferStrip";
 import { useLocale } from "@/components/LocaleProvider";
+import { IconArrowUpRight } from "@/components/icons/AppIcons";
 
 export function EventCard({
   event,
@@ -137,19 +138,32 @@ export function EventCard({
         </span>
       </Link>
       <div className="event-card__body">
-        <span className={`status-badge status-badge--${event.statusLabel}`}>
-          {statusBadgeLabel(event.statusLabel, locale)}
-        </span>
-        <h2 className="event-card__title">
-          <Link href={`/events/${event.slug}`}>{event.title}</Link>
-        </h2>
-        <p className="event-card__meta">
-          {formatEventDate(event.startsAt, locale)}
-        </p>
-        {event.collaborator ? (
-          <p className="event-card__collab">{event.collaborator}</p>
-        ) : null}
-        <EventOfferStrip offers={event.offers} compact />
+        <div className="event-card__header">
+          <span className={`status-badge status-badge--${event.statusLabel}`}>
+            {statusBadgeLabel(event.statusLabel, locale)}
+          </span>
+          <h2 className="event-card__title">
+            <Link href={`/events/${event.slug}`}>{event.title}</Link>
+          </h2>
+          <p className="event-card__meta">
+            {formatEventDate(event.startsAt, locale)}
+          </p>
+          {event.collaborator ? (
+            <p className="event-card__collab">{event.collaborator}</p>
+          ) : null}
+          {featured && event.description ? (
+            <p className="event-card__desc">{event.description}</p>
+          ) : null}
+        </div>
+        <div className="event-card__footer">
+          <EventOfferStrip offers={event.offers} compact />
+          {featured ? (
+            <Link href={`/events/${event.slug}`} className="event-card__cta">
+              {ui.featured.details}
+              <IconArrowUpRight size={13} />
+            </Link>
+          ) : null}
+        </div>
       </div>
     </article>
   );

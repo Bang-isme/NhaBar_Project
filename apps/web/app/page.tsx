@@ -5,6 +5,7 @@ import { HomeMenuTeaser } from "@/components/HomeMenuTeaser";
 import { HomeUpcomingStrip } from "@/components/HomeUpcomingStrip";
 import { HomeQuotes } from "@/components/HomeQuotes";
 import { HomeLocalizedSections } from "@/components/HomeLocalizedSections";
+import { HomeWayfindSection } from "@/components/HomeWayfindSection";
 import { HomeCtaBand } from "@/components/HomeCtaBand";
 import { getActivePromotions, getEvents, getFeaturedEvent } from "@/lib/api";
 
@@ -30,6 +31,7 @@ export default async function HomePage() {
         <HomeMenuTeaser />
         <HomeLocalizedSections promos={topPromos} />
         <HomeQuotes />
+        <HomeWayfindSection />
         <HomeCtaBand />
       </div>
     </div>

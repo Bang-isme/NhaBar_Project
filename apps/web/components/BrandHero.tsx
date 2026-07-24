@@ -34,14 +34,10 @@ export function BrandHero() {
 
         <div className="hero__stage hero__stage--lounge">
           <div className="hero__copy">
-            <div className="hero-status-tag" data-hero="kicker">
-              <span className="hero-status-tag__dot" aria-hidden="true" />
-              <span className="hero-loc">{ui.hero.location}</span>
-              <span className="hero-status-tag__sep" aria-hidden="true">
-                ·
-              </span>
-              <span className="hero-status-tag__hours">
-                {ui.venue.hoursLabel}
+            <div className="hero-editorial-kicker" data-hero="kicker">
+              <span className="hero-editorial-kicker__dot" aria-hidden="true" />
+              <span className="hero-editorial-kicker__text">
+                CAFÉ & BAR · MỸ AN · {ui.venue.hoursLabel}
               </span>
             </div>
 

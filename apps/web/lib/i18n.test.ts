@@ -33,4 +33,10 @@ describe("i18n", () => {
     expect(getUi("en").featured.offerLabel).toBe("Tonight’s offer");
     expect(getUi("vi").home.menuCta).toContain("menu");
   });
+
+  it("includes gallery nav labels", () => {
+    expect(getUi("vi").nav.gallery).toBe("Thư viện");
+    expect(getUi("en").nav.gallery).toBe("Gallery");
+    expect(getUi("ru").nav.gallery).toBe("Галерея");
+  });
 });

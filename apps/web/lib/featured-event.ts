@@ -96,6 +96,23 @@ export function formatEventDate(iso: string, locale: Locale = "vi"): string {
   }).format(new Date(iso));
 }
 
+/** Concise 1-line date & time for dossier metadata bar (e.g. "21:00 · T7, 08/08"). */
+export function formatEventDossierDate(iso: string, locale: Locale = "vi"): string {
+  const date = new Date(iso);
+  const time = new Intl.DateTimeFormat(localeToBcp47(locale), {
+    timeZone: "Asia/Ho_Chi_Minh",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(date);
+  const day = new Intl.DateTimeFormat(localeToBcp47(locale), {
+    timeZone: "Asia/Ho_Chi_Minh",
+    weekday: "short",
+    day: "2-digit",
+    month: "2-digit",
+  }).format(date);
+  return `${time} · ${day}`;
+}
+
 /** Weekday + calendar day (no clock) for nightboard when-row. */
 export function formatEventDayLabel(iso: string, locale: Locale = "vi"): string {
   return new Intl.DateTimeFormat(localeToBcp47(locale), {

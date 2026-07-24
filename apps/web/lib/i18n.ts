@@ -13,7 +13,7 @@ export const LOCALE_OPTIONS: {
   { code: "ru", label: "RU", htmlLang: "ru" },
 ];
 
-export type NavKey = "home" | "events" | "promos" | "menu" | "contact";
+export type NavKey = "home" | "events" | "promos" | "menu" | "gallery" | "contact";
 
 export const NAV_ITEMS: {
   key: NavKey;
@@ -22,9 +22,8 @@ export const NAV_ITEMS: {
 }[] = [
   { key: "home", href: "/", side: "left" },
   { key: "events", href: "/events", side: "left" },
-  { key: "promos", href: "/promotions", side: "right" },
   { key: "menu", href: "/menu", side: "right" },
-  { key: "contact", href: "/contact", side: "right" },
+  { key: "gallery", href: "/gallery", side: "right" },
 ];
 
 const DATE_LOCALE: Record<Locale, string> = {
@@ -179,6 +178,7 @@ const UI: Record<Locale, UiCopy> = {
       events: "Sự kiện",
       promos: "Ưu đãi",
       menu: "Menu",
+      gallery: "Thư viện",
       contact: "Liên hệ",
     },
     openMenu: "Mở menu",
@@ -365,6 +365,7 @@ const UI: Record<Locale, UiCopy> = {
       events: "Events",
       promos: "Promos",
       menu: "Menu",
+      gallery: "Gallery",
       contact: "Contact",
     },
     openMenu: "Open menu",
@@ -552,6 +553,7 @@ const UI: Record<Locale, UiCopy> = {
       events: "События",
       promos: "Акции",
       menu: "Меню",
+      gallery: "Галерея",
       contact: "Контакты",
     },
     openMenu: "Открыть меню",

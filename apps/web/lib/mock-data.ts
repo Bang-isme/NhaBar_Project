@@ -10,7 +10,7 @@ export const MOCK_FEATURED: FeaturedEventData = {
   slug: "nha-late-session-aug",
   title: "NHÀ LATE SESSION",
   startsAt: "2026-08-08T21:00:00+07:00",
-  posterUrl: "/posters/late-session.svg",
+  posterUrl: "/uploads/hero/speakeasy-bar.png",
   offers: [
     {
       id: "mock-promo-2",
@@ -35,7 +35,7 @@ export const MOCK_EVENTS_UPCOMING: EventListItem[] = [
       "Resident night - chill sớm, bật muộn. Lineup local + guest drop.",
     startsAt: "2026-08-08T21:00:00+07:00",
     endsAt: "2026-08-09T02:00:00+07:00",
-    posterUrl: "/posters/late-session.svg",
+    posterUrl: "/uploads/hero/speakeasy-bar.png",
     collaborator: "Resident crew",
     isFeatured: true,
     statusLabel: "upcoming",
@@ -48,7 +48,7 @@ export const MOCK_EVENTS_UPCOMING: EventListItem[] = [
     description: "Unplugged night - live set mộc, đèn ấm, ngồi gần sân khấu.",
     startsAt: "2026-08-15T20:00:00+07:00",
     endsAt: "2026-08-15T23:30:00+07:00",
-    posterUrl: "/posters/acoustic-night.svg",
+    posterUrl: "/uploads/hero/acoustic-vinyl.png",
     collaborator: "Mộc Band",
     isFeatured: false,
     statusLabel: "upcoming",

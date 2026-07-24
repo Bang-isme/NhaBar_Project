@@ -1,19 +1,22 @@
 "use client";
 
 import { EventCard } from "@/components/EventCard";
+import { PromoCard } from "@/components/PromoCard";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/motion/Reveal";
 import { PrimaryButton } from "@/components/PrimaryButton";
 import { useLocale } from "@/components/LocaleProvider";
-import type { EventListItem } from "@/lib/featured-event";
+import type { EventListItem, PromotionItem } from "@/lib/featured-event";
 import { VENUE } from "@/lib/venue";
 
 export function EventsView({
   upcoming,
   past,
+  promotions = [],
 }: {
   upcoming: EventListItem[];
   past: EventListItem[];
+  promotions?: PromotionItem[];
 }) {
   const { ui } = useLocale();
 
@@ -76,6 +79,36 @@ export function EventsView({
             </Reveal>
           )}
         </section>
+
+        {promotions && promotions.length > 0 ? (
+          <section
+            id="promotions"
+            aria-labelledby="promotions-heading"
+            className="events-section"
+          >
+            <Reveal className="section-head" mode="slide">
+              <div className="section-head__copy">
+                <h2 id="promotions-heading" className="section-title">
+                  {ui.promos.title}
+                  <sup className="section-title__count">{promotions.length}</sup>
+                </h2>
+                <p className="section-support">{ui.promos.support}</p>
+              </div>
+            </Reveal>
+            <div className="promo-bento promo-bento--editorial">
+              {promotions.map((promo, index) => (
+                <Reveal
+                  key={promo.id}
+                  className={index === 0 ? "promo-bento__lead" : undefined}
+                  delay={index * 0.06}
+                  mode={index === 0 ? "clip" : "rise"}
+                >
+                  <PromoCard promo={promo} />
+                </Reveal>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         {past.length > 0 ? (
           <section aria-labelledby="past-heading" className="events-section">
