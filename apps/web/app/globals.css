@@ -4829,15 +4829,18 @@ html[data-locale="ru"] .nav-links a {
 }
 
 .social-icon-btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 2.5rem;
   height: 2.5rem;
   border-radius: var(--radius-core);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid rgba(193, 154, 107, 0.22);
   background: rgba(193, 154, 107, 0.06);
   color: var(--accent-bronze);
+  text-decoration: none !important;
+  outline: none;
   transition:
     background 280ms var(--ease-fluid),
     border-color 280ms var(--ease-fluid),
@@ -4846,16 +4849,31 @@ html[data-locale="ru"] .nav-links a {
     box-shadow 280ms var(--ease-fluid);
 }
 
+.social-icon-btn::after {
+  display: none !important;
+}
+
 .social-icon-btn:hover {
-  background: var(--accent-bronze);
-  color: #050505;
-  border-color: var(--accent-bronze-hover);
-  box-shadow: 0 0 16px rgba(193, 154, 107, 0.35);
+  background: rgba(193, 154, 107, 0.18);
+  color: #ffffff;
+  border-color: var(--accent-bronze);
+  box-shadow:
+    0 0 18px rgba(193, 154, 107, 0.35),
+    inset 0 0 0 1px rgba(193, 154, 107, 0.15);
   transform: translateY(-2px);
 }
 
 .social-icon-btn:active {
   transform: scale(0.94);
+}
+
+.social-icon-btn svg {
+  transition: transform 280ms var(--ease-fluid), color 280ms var(--ease-fluid);
+}
+
+.social-icon-btn:hover svg {
+  transform: scale(1.1);
+  color: #ffffff;
 }
 
 .social-icon-row--sm .social-icon-btn {
