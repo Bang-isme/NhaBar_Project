@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { PrimaryButton } from "@/components/PrimaryButton";
 import { useLocale } from "@/components/LocaleProvider";
+import { IconArrowUpRight } from "@/components/icons/AppIcons";
 
 export default function GlobalError({
   error,
@@ -29,7 +30,7 @@ export default function GlobalError({
               <button type="button" className="btn-primary group" onClick={reset}>
                 <span className="btn__label">{ui.system.retry}</span>
                 <span className="btn__icon" aria-hidden="true">
-                  ↗
+                  <IconArrowUpRight size={13} />
                 </span>
               </button>
               <PrimaryButton href="/" variant="ghost">

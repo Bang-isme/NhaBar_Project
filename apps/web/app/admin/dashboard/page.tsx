@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { IconArrowUpRight } from "@/components/icons/AppIcons";
 import {
   listAdminEvents,
   listAdminMenuItems,
@@ -80,7 +81,7 @@ export default function AdminDashboardPage() {
           <Link href="/admin/events" className="btn-primary">
             <span className="btn__label">Quản lý sự kiện</span>
             <span className="btn__icon" aria-hidden="true">
-              ↗
+              <IconArrowUpRight size={13} />
             </span>
           </Link>
         </div>
@@ -93,7 +94,7 @@ export default function AdminDashboardPage() {
           <Link href="/admin/menu" className="btn-primary">
             <span className="btn__label">Quản lý thực đơn</span>
             <span className="btn__icon" aria-hidden="true">
-              ↗
+              <IconArrowUpRight size={13} />
             </span>
           </Link>
         </div>

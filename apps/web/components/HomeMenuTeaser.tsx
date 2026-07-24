@@ -62,7 +62,7 @@ export function HomeMenuTeaser() {
               <span className="menu-teaser-tile__cta">{ui.home.menuCta}</span>
             </footer>
             <span className="menu-teaser-tile__go" aria-hidden="true">
-              ↗
+              <IconArrowUpRight size={14} />
             </span>
           </Link>
         </Reveal>
@@ -73,29 +73,40 @@ export function HomeMenuTeaser() {
             return (
               <Reveal
                 key={category.id}
-                className="menu-teaser-grid__side"
+                className="menu-teaser-tile hover-lift"
+                delay={0.1 + index * 0.08}
                 mode="rise"
-                delay={0.08 + index * 0.06}
               >
                 <Link
-                  className="menu-teaser-tile menu-teaser-tile--link"
-                  href="/menu"
-                  aria-label={`${category.title} - ${ui.home.menuCta}`}
+                  href={`/menu#cat-${category.id}`}
+                  className="menu-teaser-tile__media-wrap"
                 >
-                  <header className="menu-teaser-tile__head">
-                    <p className="section-label">{category.title}</p>
-                    <p className="menu-teaser-tile__support">
-                      {category.support}
+                  <div className="menu-teaser-tile__media">
+                    <Image
+                      src={
+                        category.coverUrl ||
+                        MOCK_MENU_ITEMS.find((i) => i.categoryId === category.id)
+                          ?.imageUrl ||
+                        "/uploads/hero/speakeasy-bar.png"
+                      }
+                      alt={category.name}
+                      fill
+                      sizes="(max-width: 900px) 100vw, 24vw"
+                      className="menu-teaser-tile__img"
+                    />
+                  </div>
+                  <div className="menu-teaser-tile__header">
+                    <p className="menu-teaser-tile__kicker">
+                      {ui.menuPage.categoryLabel}
                     </p>
-                  </header>
+                    <h3 className="menu-teaser-tile__title">{category.name}</h3>
+                  </div>
                   <ul className="menu-teaser-tile__list">
                     {shown.map((item) => (
-                      <li key={item.name} className="menu-teaser-tile__row">
-                        <span className="menu-teaser-tile__name">{item.name}</span>
-                        <span
-                          className="menu-teaser-tile__leader"
-                          aria-hidden="true"
-                        />
+                      <li key={item.id}>
+                        <span className="menu-teaser-tile__item-name">
+                          {item.name}
+                        </span>
                         {item.priceHint ? (
                           <span className="menu-teaser-tile__price">
                             {item.priceHint}
@@ -113,7 +124,7 @@ export function HomeMenuTeaser() {
                     </span>
                   </footer>
                   <span className="menu-teaser-tile__go" aria-hidden="true">
-                    ↗
+                    <IconArrowUpRight size={14} />
                   </span>
                 </Link>
               </Reveal>

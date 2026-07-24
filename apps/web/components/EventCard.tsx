@@ -100,7 +100,7 @@ export function EventCard({
             ) : null}
             <span className="event-card__more">
               {ui.featured.details}
-              <span aria-hidden="true"> ↗</span>
+              <IconArrowUpRight size={12} />
             </span>
           </div>
         </Link>
