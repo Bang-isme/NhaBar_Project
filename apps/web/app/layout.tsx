@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { SkipLink } from "@/components/SkipLink";
+import { CreativeLoader } from "@/components/CreativeLoader";
 import "./globals.css";
 
 /* Be Vietnam Pro: Vietnamese UI + brand (NHÀ) */
@@ -65,6 +66,7 @@ export default function RootLayout({
     >
       <body>
         <LocaleProvider>
+          <CreativeLoader />
           <SmoothScroll />
           <SkipLink />
           <div className="site-shell">
