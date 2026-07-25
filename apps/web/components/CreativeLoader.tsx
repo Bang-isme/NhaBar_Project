@@ -13,7 +13,7 @@ const STATUS_MESSAGES = [
 
 export function CreativeLoader() {
   const { ui } = useLocale();
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(true);
   const [percentage, setPercentage] = useState(0);
   const [statusText, setStatusText] = useState(STATUS_MESSAGES[0]);
 
@@ -40,14 +40,20 @@ export function CreativeLoader() {
     const hasLoadedThisSession = sessionStorage.getItem("nha-bar-loaded");
 
     if (prefersReducedMotion || hasLoadedThisSession) {
+      setActive(false);
       document.body.style.overflow = "";
       document.body.style.touchAction = "";
       return;
     }
 
-    setActive(true);
+    // Freeze body scroll during loading
     document.body.style.overflow = "hidden";
     document.body.style.touchAction = "none";
+
+    // Guard safety check to prevent GSAP on null elements
+    if (!bladeTL.current || !bladeTR.current || !bladeBL.current || !bladeBR.current) {
+      return;
+    }
 
     const tl = gsap.timeline({
       onComplete: () => {
