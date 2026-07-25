@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { useLocale } from "@/components/LocaleProvider";
 
@@ -11,9 +12,12 @@ const STATUS_MESSAGES = [
   "Sẵn sàng đón khách...",
 ];
 
+// Global in-memory flag. Resets on F5 refresh, but persists on client-side routing.
+let hasLoadedThisSession = false;
+
 export function CreativeLoader() {
   const { ui } = useLocale();
-  const [active, setActive] = useState(true);
+  const [active, setActive] = useState(!hasLoadedThisSession);
   const [percentage, setPercentage] = useState(0);
   const [statusText, setStatusText] = useState(STATUS_MESSAGES[0]);
 
@@ -24,20 +28,19 @@ export function CreativeLoader() {
   const bladeBR = useRef<HTMLDivElement>(null);
   const trackUpperRef = useRef<HTMLDivElement>(null);
   const trackLowerRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
+  const logoWrapRef = useRef<HTMLDivElement>(null);
+  const logoGlowRef = useRef<HTMLDivElement>(null);
+  const equalizerRef = useRef<HTMLDivElement>(null);
   const percentTextRef = useRef<HTMLSpanElement>(null);
   const statusRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // WCAG: Check preferences for reduced motion
+    // Check preferences for reduced motion (Accessibility)
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
-
-    // Prevent repeat animation during session
-    const hasLoadedThisSession = sessionStorage.getItem("nha-bar-loaded");
 
     if (prefersReducedMotion || hasLoadedThisSession) {
       setActive(false);
@@ -46,11 +49,11 @@ export function CreativeLoader() {
       return;
     }
 
-    // Freeze body scroll during loading
+    // Freeze body scroll
     document.body.style.overflow = "hidden";
     document.body.style.touchAction = "none";
 
-    // Guard safety check to prevent GSAP on null elements
+    // Guard check
     if (!bladeTL.current || !bladeTR.current || !bladeBL.current || !bladeBR.current) {
       return;
     }
@@ -58,27 +61,28 @@ export function CreativeLoader() {
     const tl = gsap.timeline({
       onComplete: () => {
         const textTracks = [trackUpperRef.current, trackLowerRef.current];
-        const grid = gridRef.current;
+        const logoWrap = logoWrapRef.current;
+        const equalizer = equalizerRef.current;
         const percentText = percentTextRef.current;
         const statusEl = statusRef.current;
 
-        // Fade out overlay content first
-        gsap.to([textTracks, grid, percentText, statusEl], {
+        // Fade out overlay content
+        gsap.to([logoWrap, equalizer, textTracks, percentText, statusEl], {
           opacity: 0,
-          scale: 0.9,
+          scale: 0.92,
           duration: 0.45,
           ease: "power2.inOut",
-          stagger: 0.05,
+          stagger: 0.04,
           onComplete: () => {
             // Camera Shutter Open: Slide 4 blades diagonally outwards
             gsap.timeline({
               onComplete: () => {
                 setActive(false);
-                sessionStorage.setItem("nha-bar-loaded", "true");
+                hasLoadedThisSession = true; // Mark as loaded for SPA routes
                 document.body.style.overflow = "";
                 document.body.style.touchAction = "";
 
-                // WCAG 2.2 AA Focus Management
+                // Focus main-content for screen readers (WCAG 2.2 AA)
                 const mainContent = document.getElementById("main-content");
                 if (mainContent) {
                   mainContent.setAttribute("tabindex", "-1");
@@ -86,53 +90,51 @@ export function CreativeLoader() {
                 }
               }
             })
-            .to(bladeTL.current, { xPercent: -100, yPercent: -100, duration: 0.75, ease: "power3.inOut" }, 0)
-            .to(bladeTR.current, { xPercent: 100, yPercent: -100, duration: 0.75, ease: "power3.inOut" }, 0)
-            .to(bladeBL.current, { xPercent: -100, yPercent: 100, duration: 0.75, ease: "power3.inOut" }, 0)
-            .to(bladeBR.current, { xPercent: 100, yPercent: 100, duration: 0.75, ease: "power3.inOut" }, 0);
+            .to(bladeTL.current, { xPercent: -100, yPercent: -100, duration: 0.8, ease: "power3.inOut" }, 0)
+            .to(bladeTR.current, { xPercent: 100, yPercent: -100, duration: 0.8, ease: "power3.inOut" }, 0)
+            .to(bladeBL.current, { xPercent: -100, yPercent: 100, duration: 0.8, ease: "power3.inOut" }, 0)
+            .to(bladeBR.current, { xPercent: 100, yPercent: 100, duration: 0.8, ease: "power3.inOut" }, 0);
           }
         });
       },
     });
 
-    // Initial State Settings
+    // Reset positions
     tl.set([bladeTL.current, bladeTR.current, bladeBL.current, bladeBR.current], { xPercent: 0, yPercent: 0 });
     tl.set(trackUpperRef.current, { xPercent: -120 });
     tl.set(trackLowerRef.current, { xPercent: 120 });
-    tl.set(gridRef.current?.children || [], { scale: 0, opacity: 0 });
+    tl.set(logoWrapRef.current, { scale: 0.8, opacity: 0 });
+    tl.set(equalizerRef.current, { opacity: 0 });
 
-    // Step 1: Text slides in from opposite directions
-    tl.to(trackUpperRef.current, {
+    // 1. Slide text from left & right
+    tl.to([trackUpperRef.current, trackLowerRef.current], {
       xPercent: 0,
-      duration: 1.1,
+      duration: 1.2,
       ease: "power4.out",
-    }, 0.2);
-    tl.to(trackLowerRef.current, {
-      xPercent: 0,
-      duration: 1.1,
-      ease: "power4.out",
+      stagger: 0.05,
     }, 0.2);
 
-    // Step 2: Assemble Bento Grid Blocks sequentially
-    tl.to(gridRef.current?.children || [], {
+    // 2. Fade in and expand the Logo
+    tl.to(logoWrapRef.current, {
       scale: 1,
       opacity: 1,
-      duration: 0.65,
-      stagger: {
-        each: 0.08,
-        grid: [2, 3],
-        from: "center",
-      },
-      ease: "back.out(1.7)",
-    }, 0.5);
+      duration: 0.95,
+      ease: "back.out(1.5)",
+    }, 0.4);
 
-    // Step 3: Animate loading percentage from 0 to 100
+    // 3. Fade in Equalizer
+    tl.to(equalizerRef.current, {
+      opacity: 1,
+      duration: 0.6,
+    }, 0.6);
+
+    // 4. Animate percentage count
     const progressObj = { value: 0 };
     tl.to(
       progressObj,
       {
         value: 100,
-        duration: 2.2,
+        duration: 2.4,
         ease: "power2.inOut",
         onUpdate: () => {
           const val = Math.floor(progressObj.value);
@@ -145,18 +147,32 @@ export function CreativeLoader() {
           setStatusText(STATUS_MESSAGES[msgIndex]);
         },
       },
-      0.6
+      0.5
     );
 
-    // Subtle breathing animation for grid blocks while loading
-    tl.to(gridRef.current?.children || [], {
-      y: -4,
-      duration: 0.6,
-      stagger: 0.05,
+    // 5. Breathing logo glow pulse
+    gsap.to(logoGlowRef.current, {
+      opacity: 0.28,
+      scale: 1.18,
+      duration: 1.1,
+      repeat: -1,
       yoyo: true,
-      repeat: 1,
       ease: "power1.inOut",
-    }, 1.2);
+    });
+
+    // 6. Audio Wave Equalizer animation
+    const eqBars = equalizerRef.current?.children;
+    if (eqBars) {
+      Array.from(eqBars).forEach((bar) => {
+        gsap.to(bar, {
+          scaleY: Math.random() * 0.85 + 0.15,
+          duration: Math.random() * 0.45 + 0.25,
+          repeat: -1,
+          yoyo: true,
+          ease: "power1.inOut",
+        });
+      });
+    }
 
   }, []);
 
@@ -179,25 +195,45 @@ export function CreativeLoader() {
       aria-live="polite"
       aria-label="Đang tải trang web NHÀ Bar"
     >
-      {/* 4 Camera Shutter Blades */}
+      {/* 4 Shutter Blades (Camera opening effect) */}
       <div ref={bladeTL} className="creative-loader__blade creative-loader__blade--tl" />
       <div ref={bladeTR} className="creative-loader__blade creative-loader__blade--tr" />
       <div ref={bladeBL} className="creative-loader__blade creative-loader__blade--bl" />
       <div ref={bladeBR} className="creative-loader__blade creative-loader__blade--br" />
 
-      {/* Decorative noise layer */}
+      {/* Noise filter */}
       <div className="creative-loader__grain" />
 
-      {/* Overlay contents */}
+      {/* Overlay content */}
       <div className="creative-loader__overlay">
-        {/* Bento assembly blocks */}
-        <div ref={gridRef} className="creative-loader__grid" aria-hidden="true">
-          <div className="creative-loader__block creative-loader__block--1" />
-          <div className="creative-loader__block creative-loader__block--2" />
-          <div className="creative-loader__block creative-loader__block--3" />
-          <div className="creative-loader__block creative-loader__block--4" />
-          <div className="creative-loader__block creative-loader__block--5" />
-          <div className="creative-loader__block creative-loader__block--6" />
+        {/* Central Logo Aperture Lens */}
+        <div ref={logoWrapRef} className="creative-loader__logo-wrap">
+          <div className="creative-loader__lens">
+            <Image
+              src="/logo-nha-bar-clean.png"
+              alt="NHÀ Bar Logo"
+              width={75}
+              height={75}
+              priority
+            />
+          </div>
+          <div ref={logoGlowRef} className="creative-loader__logo-glow" />
+        </div>
+
+        {/* Music Wave Equalizer (12 high-end visualizer bars) */}
+        <div ref={equalizerRef} className="creative-loader__equalizer" aria-hidden="true">
+          <div className="creative-loader__eq-bar creative-loader__eq-bar--1" />
+          <div className="creative-loader__eq-bar creative-loader__eq-bar--2" />
+          <div className="creative-loader__eq-bar creative-loader__eq-bar--3" />
+          <div className="creative-loader__eq-bar creative-loader__eq-bar--4" />
+          <div className="creative-loader__eq-bar creative-loader__eq-bar--5" />
+          <div className="creative-loader__eq-bar creative-loader__eq-bar--6" />
+          <div className="creative-loader__eq-bar creative-loader__eq-bar--7" />
+          <div className="creative-loader__eq-bar creative-loader__eq-bar--8" />
+          <div className="creative-loader__eq-bar creative-loader__eq-bar--9" />
+          <div className="creative-loader__eq-bar creative-loader__eq-bar--10" />
+          <div className="creative-loader__eq-bar creative-loader__eq-bar--11" />
+          <div className="creative-loader__eq-bar creative-loader__eq-bar--12" />
         </div>
 
         {/* Dual-Direction Sliding Text */}
