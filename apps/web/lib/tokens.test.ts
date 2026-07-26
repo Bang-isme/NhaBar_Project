@@ -8,7 +8,7 @@ describe("design tokens", () => {
       resolve(__dirname, "../app/globals.css"),
       "utf8",
     );
-    expect(css).toMatch(/--bg-base:\s*#050505/i);
+    expect(css).toMatch(/--bg-base:\s*#070605/i);
     expect(css).toMatch(/--accent-bronze:\s*#c19a6b/i);
     expect(css).toMatch(/--accent-signal:/i);
     expect(css).not.toContain("#7C3AED");

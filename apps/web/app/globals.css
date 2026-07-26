@@ -6,7 +6,7 @@
 
 :root {
   color-scheme: dark;
-  --bg-base: #050505;
+  --bg-base: #070605;
   --bg-deep: #0a0908;
   --bg-elevated: #100e0c;
   --bg-wash: #161310;
@@ -116,34 +116,20 @@ body {
   min-height: 100dvh;
   font-size: clamp(1.05rem, 0.98rem + 0.35vw, 1.2rem);
   line-height: 1.65;
-  background:
-    radial-gradient(ellipse 70% 50% at 88% -8%, var(--glow-bronze), transparent 58%),
-    radial-gradient(ellipse 45% 40% at 0% 100%, rgba(193, 154, 107, 0.08), transparent 52%),
-    #050505;
+  background: var(--bg-base);
   overflow-x: clip;
   position: relative;
 }
 
-/* Artisanal film grain — logo stamp texture, not flat digital black */
+/* Global film grain matching the creative loader */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: 80;
+  z-index: 1; /* Keep it low so it acts as background texture */
   pointer-events: none;
-  opacity: 0.055;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 60;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
 a {
@@ -5568,7 +5554,7 @@ html[data-locale="ru"] .nav-links a {
 }
 
 /* ==========================================================================
-   CREATIVE LOADER SYSTEM (CAMERA SHUTTER & BENTO ASSEMBLY)
+   CREATIVE LOADER SYSTEM (DRINK CRAFT POURING & FROSTED RIPPLE SHUTTER)
    ========================================================================== */
 .creative-loader {
   position: fixed;
@@ -5581,55 +5567,24 @@ html[data-locale="ru"] .nav-links a {
   overflow: hidden;
 }
 
-/* 4 Camera Shutter Blades (Aperture blades overlapping to prevent hairline gaps) */
-.creative-loader__blade {
+/* Matte Black solid background */
+.creative-loader__background {
   position: absolute;
-  width: 50.8%;
-  height: 50.8%;
-  background: #050505;
-  z-index: 5;
-  transition: border-color 300ms ease;
+  inset: 0;
+  background: #070605;
+  z-index: 1;
 }
 
-.creative-loader__blade--tl {
-  top: 0;
-  left: 0;
-  border-bottom: 1.5px solid rgba(193, 154, 107, 0.07);
-  border-right: 1.5px solid rgba(193, 154, 107, 0.07);
-}
-
-.creative-loader__blade--tr {
-  top: 0;
-  right: 0;
-  border-bottom: 1.5px solid rgba(193, 154, 107, 0.07);
-  border-left: 1.5px solid rgba(193, 154, 107, 0.07);
-}
-
-.creative-loader__blade--bl {
-  bottom: 0;
-  left: 0;
-  border-top: 1.5px solid rgba(193, 154, 107, 0.07);
-  border-right: 1.5px solid rgba(193, 154, 107, 0.07);
-}
-
-.creative-loader__blade--br {
-  bottom: 0;
-  right: 0;
-  border-top: 1.5px solid rgba(193, 154, 107, 0.07);
-  border-left: 1.5px solid rgba(193, 154, 107, 0.07);
-}
-
-/* Film Grain overlay for premium matte black feel */
+/* Film Grain overlay for premium matte feel */
 .creative-loader__grain {
   position: absolute;
   inset: 0;
   z-index: 10;
-  opacity: 0.022;
+  opacity: 0.025;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-/* Loader Content Overlay */
 .creative-loader__overlay {
   position: relative;
   z-index: 20;
@@ -5637,76 +5592,266 @@ html[data-locale="ru"] .nav-links a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(1.8rem, 5vw, 3rem);
+  gap: clamp(1rem, 3dvh, 2.8rem);
   text-align: center;
   width: 100%;
   height: 100%;
-  padding: 2rem;
+  padding: 2.5rem;
 }
 
-/* Central Logo Lens & Glowing Aura */
-.creative-loader__logo-wrap {
+.creative-loader__station {
   position: relative;
-  width: 6.8rem;
-  height: 6.8rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: -0.25rem;
+  width: clamp(12rem, 35vmin, 26rem);
+  height: clamp(12rem, 35vmin, 26rem);
+  transition: all 400ms var(--ease-fluid);
 }
 
-.creative-loader__lens {
-  position: relative;
-  z-index: 2;
-  width: 6.4rem;
-  height: 6.4rem;
-  border-radius: 50%;
-  border: 1.5px solid rgba(193, 154, 107, 0.28);
-  background: rgba(10, 8, 7, 0.85);
-  backdrop-filter: blur(8px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.75),
-    inset 0 0 15px rgba(193, 154, 107, 0.15);
+.creative-loader__glass-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.75));
 }
 
-.creative-loader__lens img {
-  object-fit: contain;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+/* Glass Outline Styles */
+.creative-loader__glass-rim,
+.creative-loader__glass-stem,
+.creative-loader__glass-base {
+  stroke: var(--accent-bronze);
+  stroke-width: 2.2px;
+  stroke-linecap: round;
+  opacity: 0.65;
 }
 
-.creative-loader__logo-glow {
+.creative-loader__glass-lip {
+  stroke: var(--accent-bronze);
+  stroke-width: 1.6px;
+  opacity: 0.45;
+}
+
+/* Liquid Fluid Styles */
+.creative-loader__liquid-body {
+  fill: #c19a6b;
+  opacity: 0.75;
+}
+
+.creative-loader__fluid-wave {
+  fill: var(--accent-bronze);
+  opacity: 0.85;
+}
+
+.creative-loader__fluid-wave--back {
+  fill: #dfb88c;
+  opacity: 0.55;
+  animation: wave-move-back 3.5s linear infinite;
+}
+
+.creative-loader__fluid-wave--front {
+  animation: wave-move-front 2.4s linear infinite;
+}
+
+/* Natural Amber Liquid Pouring Stream Path */
+.creative-loader__pour-stream-path {
+  fill: none;
+  stroke: url(#stream-amber-grad);
+  stroke-width: 2.4px;
+  stroke-linecap: round;
+  stroke-dasharray: 140;
+  stroke-dashoffset: 140;
+  opacity: 0.85;
+  filter: drop-shadow(0 2px 8px rgba(168, 113, 50, 0.45));
+}
+
+/* Wave displacement keyframes */
+@keyframes wave-move-front {
+  0% { transform: translateX(0px); }
+  100% { transform: translateX(100px); }
+}
+
+@keyframes wave-move-back {
+  0% { transform: translateX(0px); }
+  100% { transform: translateX(-100px); }
+}
+
+.creative-loader__fluid-wave--mid {
+  fill: rgba(193, 154, 107, 0.45);
+  animation: wave-move-mid 3.0s linear infinite;
+}
+
+/* Splash Rings Animation */
+.creative-loader__splash-ring {
+  fill: none;
+  stroke: #dfb88c;
+  stroke-width: 1.2px;
+  opacity: 0.8;
+  animation: splash-pulse 1.2s ease-out infinite;
+  transform-origin: center;
+}
+
+.creative-loader__splash-ring--outer {
+  animation-delay: 0.4s;
+}
+
+/* Carbonation Bubbles Floating Animation */
+.creative-loader__bubble {
+  fill: #ffffff;
+  opacity: 0.75;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
+}
+
+.creative-loader__bubble--1 { animation: bubble-rise 2.4s ease-in-out infinite; }
+.creative-loader__bubble--2 { animation: bubble-rise 1.9s ease-in-out infinite 0.5s; }
+.creative-loader__bubble--3 { animation: bubble-rise 2.7s ease-in-out infinite 0.2s; }
+.creative-loader__bubble--4 { animation: bubble-rise 2.1s ease-in-out infinite 0.7s; }
+.creative-loader__bubble--5 { animation: bubble-rise 2.5s ease-in-out infinite 0.3s; }
+
+/* Glass Decorative elements styling */
+.creative-loader__citrus-rind {
+  fill: rgba(223, 184, 140, 0.25);
+  stroke: var(--accent-bronze);
+  stroke-width: 1.6px;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4));
+}
+
+.creative-loader__citrus-pulp {
+  stroke: rgba(223, 184, 140, 0.7);
+  stroke-width: 1.2px;
+}
+
+.creative-loader__ice-body {
+  fill: rgba(255, 255, 255, 0.42);
+  stroke: #ffffff;
+  stroke-width: 1.5px;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+}
+
+.creative-loader__ice-shine {
+  stroke: #ffffff;
+  stroke-width: 1.2px;
+  stroke-linecap: round;
+  opacity: 0.85;
+}
+
+.creative-loader__straw-main {
+  stroke: var(--accent-bronze);
+  stroke-width: 3.5px;
+  stroke-linecap: round;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4));
+}
+
+.creative-loader__straw-stripe {
+  stroke: #ffffff;
+  stroke-width: 1.2px;
+  stroke-dasharray: 4 4;
+  opacity: 0.75;
+}
+
+.creative-loader__umbrella-canopy {
+  stroke: var(--accent-bronze);
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6));
+}
+
+.creative-loader__umbrella-spokes {
+  stroke: rgba(255, 255, 255, 0.6);
+  stroke-width: 1px;
+}
+
+.creative-loader__umbrella-shaft {
+  stroke: var(--accent-bronze);
+  stroke-width: 2.2px;
+  stroke-linecap: round;
+}
+
+@keyframes wave-move-mid {
+  0% { transform: translateX(0px); }
+  100% { transform: translateX(100px); }
+}
+
+@keyframes bubble-rise {
+  0% { transform: translateY(0px); opacity: 0.2; }
+  50% { opacity: 0.8; }
+  100% { transform: translateY(-28px); opacity: 0; }
+}
+
+@keyframes splash-pulse {
+  0% { transform: scale(0.5); opacity: 0.9; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Framing Header & Footer bars across top and bottom */
+.creative-loader__frame-top,
+.creative-loader__frame-bottom {
   position: absolute;
-  inset: -0.35rem;
-  z-index: 1;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(193, 154, 107, 0.42) 0%, rgba(193, 154, 107, 0) 70%);
-  filter: blur(12px);
-  opacity: 0.18;
+  left: clamp(1rem, 4vw, 3rem);
+  right: clamp(1rem, 4vw, 3rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: clamp(0.5rem, 2dvh, 0.85rem);
+  border-bottom: 1px solid rgba(193, 154, 107, 0.1);
   pointer-events: none;
 }
 
-/* Audio Wave Equalizer Visualizer */
-.creative-loader__equalizer {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 0.35rem;
-  width: 11rem;
-  height: 2.4rem;
-  margin-bottom: -0.5rem;
+.creative-loader__frame-top { top: clamp(0.5rem, 3dvh, 2rem); }
+
+.creative-loader__frame-bottom {
+  bottom: clamp(0.5rem, 3dvh, 2rem);
+  border-bottom: none;
+  border-top: 1px solid rgba(193, 154, 107, 0.1);
 }
 
-.creative-loader__eq-bar {
-  width: 0.25rem;
-  height: 100%;
-  background: linear-gradient(to top, rgba(193, 154, 107, 0.15) 0%, var(--accent-bronze) 100%);
-  border-radius: 0.1rem;
-  transform-origin: bottom;
-  transform: scaleY(0.15);
-  box-shadow: 0 0 6px rgba(193, 154, 107, 0.1);
+.creative-loader__meta-item {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: clamp(0.45rem, 1.5vw, 0.65rem);
+  font-weight: 600;
+  letter-spacing: clamp(0.05em, 0.2vw, 0.2em);
+  color: var(--text-muted);
+  opacity: 0.45;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Central Vertical Golden Ratio Flow */
+.creative-loader__flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 32rem;
+  margin: auto;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .creative-loader__flow {
+    flex-direction: row-reverse;
+    max-width: 90vw;
+    justify-content: center;
+    gap: clamp(6rem, 15vw, 25rem);
+  }
+  
+  .creative-loader__station {
+    width: clamp(26rem, 55vh, 50rem);
+    height: clamp(26rem, 55vh, 50rem);
+  }
+  
+  .creative-loader__logo-image {
+    width: clamp(18rem, 38vh, 40rem) !important;
+  }
+}
+
+.creative-loader__brand-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Dual-Direction Track text layout */
@@ -5714,9 +5859,18 @@ html[data-locale="ru"] .nav-links a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.15rem;
   width: 100%;
   overflow: hidden;
+  margin-top: clamp(-1rem, -1dvh, -0.5rem);
+  margin-bottom: clamp(0.5rem, 3dvh, 1.2rem);
+}
+
+.creative-loader__logo-image {
+  width: clamp(7.5rem, 25vmin, 18rem);
+  height: auto;
+  object-fit: contain;
+  transition: width 400ms var(--ease-fluid);
 }
 
 .creative-loader__track {
@@ -5724,27 +5878,27 @@ html[data-locale="ru"] .nav-links a {
   display: flex;
   justify-content: center;
   overflow: hidden;
-  padding-block: 0.1rem;
+  padding-block: 0.05rem;
 }
 
 .creative-loader__word {
   font-family: var(--font-display), "Be Vietnam Pro", sans-serif;
-  font-size: clamp(3.2rem, 11vw, 7.2rem);
+  font-size: clamp(2.8rem, 8.5vw, 4.8rem);
   font-weight: 900;
-  line-height: 0.95;
-  letter-spacing: 0.12em;
+  line-height: 1.0;
+  letter-spacing: 0.16em;
   display: inline-block;
 }
 
 .creative-loader__word--nha {
   color: #f3ebe0;
-  padding-left: 0.12em; /* Balance letter-spacing offset */
+  padding-left: 0.16em;
 }
 
 .creative-loader__word--bar {
   color: var(--accent-bronze);
-  padding-left: 0.12em;
-  text-shadow: 0 0 30px rgba(193, 154, 107, 0.18);
+  padding-left: 0.16em;
+  text-shadow: 0 0 25px rgba(193, 154, 107, 0.15);
 }
 
 /* Loading Percentage & Status metadata */
@@ -5752,37 +5906,46 @@ html[data-locale="ru"] .nav-links a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.35rem;
 }
 
 .creative-loader__percentage {
   font-family: var(--font-outfit), sans-serif;
-  font-size: 1.45rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: var(--accent-bronze);
   letter-spacing: 0.05em;
-  text-shadow: 0 0 15px rgba(193, 154, 107, 0.1);
+  text-shadow: 0 0 15px rgba(193, 154, 107, 0.15);
 }
 
 .creative-loader__status {
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text-muted);
   min-height: 1.2rem;
   display: inline-block;
 }
 
-/* Responsive adjustment for extra compact screens */
-@media (max-width: 480px) {
-  .creative-loader__equalizer {
-    width: 9rem;
-    height: 2rem;
-    gap: 0.28rem;
-  }
-  .creative-loader__eq-bar {
-    width: 0.2rem;
+/* Frosted Glass Transition Curtain */
+.creative-loader__ripple-shutter {
+  position: absolute;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(7, 6, 5, 0.88);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  pointer-events: none;
+  clip-path: circle(0% at 50% 50%);
+}
+
+/* Responsive adjustment for compact screens */
+@media (max-width: 768px) {
+  .creative-loader__frame-top,
+  .creative-loader__frame-bottom {
+    display: none; /* Hide top/bottom frame lines on mobile for clean vertical alignment */
   }
 }
+
 
