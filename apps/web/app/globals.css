@@ -5804,6 +5804,7 @@ html[data-locale="ru"] .nav-links a {
   bottom: clamp(0.5rem, 3dvh, 2rem);
   border-bottom: none;
   border-top: 1px solid rgba(193, 154, 107, 0.1);
+  transition: width 400ms var(--ease-fluid);
 }
 
 .creative-loader__meta-item {
@@ -5817,44 +5818,46 @@ html[data-locale="ru"] .nav-links a {
   white-space: nowrap;
 }
 
-/* Central Vertical Golden Ratio Flow */
+/* Central Vertical Golden Ratio Flow - Single Focal Point (Cinematic 3D Layering) */
 .creative-loader__flow {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 32rem;
+  max-width: 40rem;
   margin: auto;
-  gap: 2rem;
+  gap: 0.5rem;
 }
 
 @media (min-width: 1024px) {
   .creative-loader__flow {
-    flex-direction: row-reverse;
-    max-width: 90vw;
+    flex-direction: column;
+    max-width: 50rem;
     justify-content: center;
-    gap: clamp(6rem, 15vw, 25rem);
+    gap: 0.75rem;
   }
   
   .creative-loader__station {
-    width: clamp(26rem, 55vh, 50rem);
-    height: clamp(26rem, 55vh, 50rem);
+    width: clamp(26rem, 50vh, 42rem);
+    height: clamp(26rem, 50vh, 42rem);
   }
   
   .creative-loader__logo-image {
-    width: clamp(18rem, 38vh, 40rem) !important;
+    width: clamp(14rem, 25vh, 20rem) !important;
   }
 }
 
 .creative-loader__brand-group {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 
-/* Dual-Direction Track text layout */
 .creative-loader__brand {
   display: flex;
   flex-direction: column;
@@ -5862,66 +5865,45 @@ html[data-locale="ru"] .nav-links a {
   gap: 0.15rem;
   width: 100%;
   overflow: hidden;
-  margin-top: clamp(-1rem, -1dvh, -0.5rem);
-  margin-bottom: clamp(0.5rem, 3dvh, 1.2rem);
+  margin: 0;
 }
 
 .creative-loader__logo-image {
-  width: clamp(7.5rem, 25vmin, 18rem);
+  width: clamp(10rem, 30vmin, 14rem);
   height: auto;
   object-fit: contain;
   transition: width 400ms var(--ease-fluid);
 }
 
-.creative-loader__track {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
-  padding-block: 0.05rem;
-}
-
-.creative-loader__word {
-  font-family: var(--font-display), "Be Vietnam Pro", sans-serif;
-  font-size: clamp(2.8rem, 8.5vw, 4.8rem);
-  font-weight: 900;
-  line-height: 1.0;
-  letter-spacing: 0.16em;
-  display: inline-block;
-}
-
-.creative-loader__word--nha {
-  color: #f3ebe0;
-  padding-left: 0.16em;
-}
-
-.creative-loader__word--bar {
-  color: var(--accent-bronze);
-  padding-left: 0.16em;
-  text-shadow: 0 0 25px rgba(193, 154, 107, 0.15);
+.creative-loader__station {
+  position: relative;
+  z-index: 2;
 }
 
 /* Loading Percentage & Status metadata */
 .creative-loader__meta {
+  position: relative;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.25rem;
+  margin-top: clamp(-1.5rem, -3vh, -0.5rem);
 }
 
 .creative-loader__percentage {
   font-family: var(--font-outfit), sans-serif;
-  font-size: 1.35rem;
+  font-size: clamp(1.4rem, 2.8vw, 1.85rem);
   font-weight: 700;
   color: var(--accent-bronze);
-  letter-spacing: 0.05em;
-  text-shadow: 0 0 15px rgba(193, 154, 107, 0.15);
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 20px rgba(193, 154, 107, 0.3);
 }
 
 .creative-loader__status {
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text-muted);
   min-height: 1.2rem;
@@ -5948,4 +5930,23 @@ html[data-locale="ru"] .nav-links a {
   }
 }
 
-
+/* --- Awwwards Transition Utilities --- */
+.reveal-mask {
+  overflow: hidden;
+  display: block;
+}
+.reveal-mask--inline {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: top;
+}
+.reveal-text {
+  display: block;
+  transform: translateY(110%);
+  will-change: transform;
+}
+.reveal-text--inline {
+  display: inline-block;
+  transform: translateY(110%);
+  will-change: transform;
+}

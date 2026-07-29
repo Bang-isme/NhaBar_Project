@@ -433,6 +433,19 @@ export function CreativeLoader() {
         </div>
 
         <div ref={flowRef} className="creative-loader__flow" style={{ opacity: 0 }}>
+          <div className="creative-loader__brand-group">
+            <div ref={brandRef} className="creative-loader__brand" style={{ opacity: 0 }}>
+              <Image
+                src="/logo-nha-bar-clean.png"
+                alt="NHÀ Bar Logo"
+                width={400}
+                height={400}
+                priority
+                className="creative-loader__logo-image"
+              />
+            </div>
+          </div>
+
           <div ref={glassRef} className="creative-loader__station" style={{ opacity: 0 }}>
             <svg viewBox="-40 -150 240 320" className="creative-loader__glass-svg">
               <defs>
@@ -662,23 +675,10 @@ export function CreativeLoader() {
               <path d="M28,40 C28,65 48,82 58,85" fill="none" stroke="#ffffff" strokeWidth="1.4" strokeLinecap="round" opacity="0.45" />
             </svg>
           </div>
-
-          <div className="creative-loader__brand-group">
-            <div ref={brandRef} className="creative-loader__brand" style={{ opacity: 0 }}>
-              <Image
-                src="/logo-nha-bar-clean.png"
-                alt="NHÀ Bar Logo"
-                width={400}
-                height={400}
-                priority
-                className="creative-loader__logo-image"
-              />
-            </div>
-
-            <div className="creative-loader__meta">
-              <span ref={percentTextRef} className="creative-loader__percentage">{percentage}%</span>
-              <span ref={statusRef} className="creative-loader__status">{statusText}</span>
-            </div>
+          
+          <div className="creative-loader__meta">
+            <span ref={percentTextRef} className="creative-loader__percentage">{percentage}%</span>
+            <span ref={statusRef} className="creative-loader__status">{statusText}</span>
           </div>
         </div>
 
