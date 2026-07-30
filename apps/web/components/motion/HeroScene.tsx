@@ -49,7 +49,7 @@ export function HeroScene({ children }: Props) {
 
       gsap.set([kicker, brand, words, copy, cta, footer], {
         opacity: 0,
-        y: 18,
+        y: "110%",
         force3D: true,
       });
       gsap.set(visual, {
@@ -73,7 +73,8 @@ export function HeroScene({ children }: Props) {
 
       const tl = gsap.timeline({
         defaults: { ease: "power3.out", force3D: true },
-        delay: 0.08,
+        paused: true,
+        delay: 0.1,
       });
 
       tl.to(kicker, { opacity: 1, y: 0, duration: 0.45 }, 0)
@@ -154,6 +155,18 @@ export function HeroScene({ children }: Props) {
           },
         });
       }
+
+      const playIntro = () => tl.play();
+      
+      if (document.documentElement.classList.contains("app-ready")) {
+        playIntro();
+      } else {
+        window.addEventListener("app-ready", playIntro, { once: true });
+      }
+
+      return () => {
+        window.removeEventListener("app-ready", playIntro);
+      };
     },
     { scope: root },
   );

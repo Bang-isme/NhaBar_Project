@@ -34,11 +34,13 @@ export function BrandHero() {
 
         <div className="hero__stage hero__stage--lounge">
           <div className="hero__copy">
-            <div className="hero-editorial-kicker" data-hero="kicker">
-              <span className="hero-editorial-kicker__dot" aria-hidden="true" />
-              <span className="hero-editorial-kicker__text">
-                CAFÉ & BAR · MỸ AN · {ui.venue.hoursLabel}
-              </span>
+            <div className="reveal-mask">
+              <div className="hero-editorial-kicker reveal-text" data-hero="kicker">
+                <span className="hero-editorial-kicker__dot" aria-hidden="true" />
+                <span className="hero-editorial-kicker__text">
+                  CAFÉ & BAR · MỸ AN · {ui.venue.hoursLabel}
+                </span>
+              </div>
             </div>
 
             <div className="hero-brand" data-hero="brand">
@@ -54,21 +56,27 @@ export function BrandHero() {
                 id="brand-hero-title"
                 className="hero-title hero-title--stamp"
               >
-                <span data-hero-word className="hero-title__line">
-                  NHÀ
+                <span className="reveal-mask">
+                  <span data-hero-word className="hero-title__line reveal-text">
+                    NHÀ
+                  </span>
                 </span>
-                <span
-                  data-hero-word
-                  className="hero-title__line hero-title__accent"
-                >
-                  BAR
+                <span className="reveal-mask">
+                  <span
+                    data-hero-word
+                    className="hero-title__line hero-title__accent reveal-text"
+                  >
+                    BAR
+                  </span>
                 </span>
               </h1>
             </div>
 
-            <p className="hero-tagline" data-hero="copy">
-              “{ui.venue.tagline}”
-            </p>
+            <div className="reveal-mask" style={{ marginTop: '1.25rem' }}>
+              <p className="hero-tagline reveal-text" data-hero="copy" style={{ margin: 0 }}>
+                “{ui.venue.tagline}”
+              </p>
+            </div>
 
             <div className="cta-row" data-hero="cta">
               <PrimaryButton href="/events">{ui.hero.viewEvents}</PrimaryButton>
