@@ -5592,11 +5592,11 @@ html[data-locale="ru"] .nav-links a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(1rem, 3dvh, 2.8rem);
+  gap: clamp(0.75rem, 2.5dvh, 2rem);
   text-align: center;
   width: 100%;
   height: 100%;
-  padding: 2.5rem;
+  padding: clamp(1.25rem, 3vw, 3rem);
 }
 
 .creative-loader__station {
@@ -5607,6 +5607,274 @@ html[data-locale="ru"] .nav-links a {
   width: clamp(12rem, 35vmin, 26rem);
   height: clamp(12rem, 35vmin, 26rem);
   transition: all 400ms var(--ease-fluid);
+}
+
+.creative-loader__glass-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.75));
+}
+
+/* Glass Outline Styles */
+.creative-loader__glass-rim,
+.creative-loader__glass-stem,
+.creative-loader__glass-base {
+  stroke: var(--accent-bronze);
+  stroke-width: 2.2px;
+  stroke-linecap: round;
+  opacity: 0.65;
+}
+
+.creative-loader__glass-lip {
+  stroke: var(--accent-bronze);
+  stroke-width: 1.6px;
+  opacity: 0.45;
+}
+
+/* Liquid Fluid Styles */
+.creative-loader__liquid-body {
+  fill: #c19a6b;
+  opacity: 0.75;
+}
+
+.creative-loader__fluid-wave {
+  fill: var(--accent-bronze);
+  opacity: 0.85;
+}
+
+.creative-loader__fluid-wave--back {
+  fill: #dfb88c;
+  opacity: 0.55;
+  animation: wave-move-back 3.5s linear infinite;
+}
+
+.creative-loader__fluid-wave--front {
+  animation: wave-move-front 2.4s linear infinite;
+}
+
+/* Natural Amber Liquid Pouring Stream Path */
+.creative-loader__pour-stream-path {
+  fill: none;
+  stroke: url(#stream-amber-grad);
+  stroke-width: 2.4px;
+  stroke-linecap: round;
+  stroke-dasharray: 140;
+  stroke-dashoffset: 140;
+  opacity: 0.85;
+  filter: drop-shadow(0 2px 8px rgba(168, 113, 50, 0.45));
+}
+
+/* Wave displacement keyframes */
+@keyframes wave-move-front {
+  0% { transform: translateX(0px); }
+  100% { transform: translateX(100px); }
+}
+
+@keyframes wave-move-back {
+  0% { transform: translateX(0px); }
+  100% { transform: translateX(-100px); }
+}
+
+.creative-loader__fluid-wave--mid {
+  fill: rgba(193, 154, 107, 0.45);
+  animation: wave-move-mid 3.0s linear infinite;
+}
+
+/* Splash Rings Animation */
+.creative-loader__splash-ring {
+  fill: none;
+  stroke: #dfb88c;
+  stroke-width: 1.2px;
+  opacity: 0.8;
+  animation: splash-pulse 1.2s ease-out infinite;
+  transform-origin: center;
+}
+
+.creative-loader__splash-ring--outer {
+  animation-delay: 0.4s;
+}
+
+/* Carbonation Bubbles Floating Animation */
+.creative-loader__bubble {
+  fill: #ffffff;
+  opacity: 0.75;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
+}
+
+.creative-loader__bubble--1 { animation: bubble-rise 2.4s ease-in-out infinite; }
+.creative-loader__bubble--2 { animation: bubble-rise 1.9s ease-in-out infinite 0.5s; }
+.creative-loader__bubble--3 { animation: bubble-rise 2.7s ease-in-out infinite 0.2s; }
+.creative-loader__bubble--4 { animation: bubble-rise 2.1s ease-in-out infinite 0.7s; }
+.creative-loader__bubble--5 { animation: bubble-rise 2.5s ease-in-out infinite 0.3s; }
+
+/* Glass Decorative elements styling */
+.creative-loader__citrus-rind {
+  fill: rgba(223, 184, 140, 0.25);
+  stroke: var(--accent-bronze);
+  stroke-width: 1.6px;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4));
+}
+
+.creative-loader__citrus-pulp {
+  stroke: rgba(223, 184, 140, 0.7);
+  stroke-width: 1.2px;
+}
+
+.creative-loader__ice-body {
+  fill: rgba(255, 255, 255, 0.42);
+  stroke: #ffffff;
+  stroke-width: 1.5px;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+}
+
+.creative-loader__ice-shine {
+  stroke: #ffffff;
+  stroke-width: 1.2px;
+  stroke-linecap: round;
+  opacity: 0.85;
+}
+
+.creative-loader__straw-main {
+  stroke: var(--accent-bronze);
+  stroke-width: 3.5px;
+  stroke-linecap: round;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4));
+}
+
+.creative-loader__straw-stripe {
+  stroke: #ffffff;
+  stroke-width: 1.2px;
+  stroke-dasharray: 4 4;
+  opacity: 0.75;
+}
+
+.creative-loader__umbrella-canopy {
+  stroke: var(--accent-bronze);
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6));
+}
+.creative-loader__umbrella-spokes {
+  stroke: rgba(255, 255, 255, 0.6);
+  stroke-width: 1px;
+}
+
+.creative-loader__umbrella-shaft {
+  stroke: var(--accent-bronze);
+  stroke-width: 2.2px;
+  stroke-linecap: round;
+}
+
+@keyframes wave-move-mid {
+  0% { transform: translateX(0px); }
+  100% { transform: translateX(100px); }
+}
+
+@keyframes bubble-rise {
+  0% { transform: translateY(0px); opacity: 0.2; }
+  50% { opacity: 0.8; }
+  100% { transform: translateY(-28px); opacity: 0; }
+}
+
+@keyframes splash-pulse {
+  0% { transform: scale(0.5); opacity: 0.9; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Cinematic Spotlight Backdrop */
+.creative-loader__spotlight-backdrop {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 15; /* Behind the glass but above grain */
+  pointer-events: none;
+}
+
+.creative-loader__spotlight-glow {
+  width: clamp(20rem, 50vw, 40rem);
+  height: clamp(20rem, 50vw, 40rem);
+  background: radial-gradient(circle at center, rgba(193, 154, 107, 0.12) 0%, rgba(193, 154, 107, 0.05) 40%, transparent 70%);
+  filter: blur(40px);
+  border-radius: 50%;
+  animation: spotlight-breathe 4s ease-in-out infinite alternate;
+}
+
+.creative-loader__shadow-leaf {
+  position: absolute;
+  top: -10%;
+  width: clamp(15rem, 40vw, 30rem);
+  height: clamp(15rem, 40vw, 30rem);
+  fill: #1a1510;
+  opacity: 0.5;
+  filter: blur(20px);
+  pointer-events: none;
+  transform-origin: top center;
+}
+
+.creative-loader__shadow-leaf--left {
+  left: -15%;
+  animation: shadow-sway 12s ease-in-out infinite alternate;
+}
+
+.creative-loader__shadow-leaf--right {
+  right: -15%;
+  animation: shadow-sway-right 14s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes shadow-sway {
+  0% { transform: rotate(-5deg); opacity: 0.3; }
+  50% { opacity: 0.6; }
+  100% { transform: rotate(10deg); opacity: 0.3; }
+}
+
+@keyframes shadow-sway-right {
+  0% { transform: scaleX(-1) rotate(-8deg); opacity: 0.3; }
+  50% { opacity: 0.6; }
+  100% { transform: scaleX(-1) rotate(6deg); opacity: 0.3; }
+}
+
+.creative-loader__gold-dust {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #dfb88c;
+  border-radius: 50%;
+  box-shadow: 0 0 6px 1px rgba(223, 184, 140, 0.6);
+  opacity: 0;
+}
+
+.creative-loader__gold-dust--1 { top: 30%; left: 40%; animation: gold-float 6s ease-in-out infinite alternate 0s; }
+.creative-loader__gold-dust--2 { top: 60%; left: 35%; animation: gold-float 7s ease-in-out infinite alternate 1s; width: 2px; height: 2px; }
+.creative-loader__gold-dust--3 { top: 40%; right: 35%; animation: gold-float 5s ease-in-out infinite alternate 2s; }
+.creative-loader__gold-dust--4 { top: 65%; right: 40%; animation: gold-float 8s ease-in-out infinite alternate 0.5s; width: 4px; height: 4px; }
+.creative-loader__gold-dust--5 { top: 25%; left: 55%; animation: gold-float 6.5s ease-in-out infinite alternate 1.5s; width: 2px; height: 2px; }
+
+@keyframes spotlight-breathe {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  100% { transform: scale(1.1); opacity: 1; }
+}
+
+@keyframes gold-float {
+  0% { transform: translate(0, 0) scale(0.5); opacity: 0; }
+  25% { opacity: 0.6; }
+  50% { transform: translate(-10px, -20px) scale(1); opacity: 0.8; }
+  75% { opacity: 0.6; }
+  100% { transform: translate(15px, -40px) scale(0.5); opacity: 0; }
+}
+
+.creative-loader__station {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(12rem, 35vmin, 26rem);
+  height: clamp(12rem, 35vmin, 26rem);
+  transition: all 400ms var(--ease-fluid);
+  z-index: 20;
 }
 
 .creative-loader__glass-svg {
@@ -5784,7 +6052,7 @@ html[data-locale="ru"] .nav-links a {
   100% { transform: scale(1.6); opacity: 0; }
 }
 
-/* Framing Header & Footer bars across top and bottom */
+/* Framing Header & Footer HUD */
 .creative-loader__frame-top,
 .creative-loader__frame-bottom {
   position: absolute;
@@ -5793,18 +6061,29 @@ html[data-locale="ru"] .nav-links a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-block: clamp(0.5rem, 2dvh, 0.85rem);
-  border-bottom: 1px solid rgba(193, 154, 107, 0.1);
   pointer-events: none;
+  z-index: 30;
 }
 
-.creative-loader__frame-top { top: clamp(0.5rem, 3dvh, 2rem); }
+.creative-loader__frame-top { 
+  top: clamp(1rem, 4dvh, 2.5rem); 
+  align-items: flex-start;
+}
 
 .creative-loader__frame-bottom {
-  bottom: clamp(0.5rem, 3dvh, 2rem);
-  border-bottom: none;
-  border-top: 1px solid rgba(193, 154, 107, 0.1);
-  transition: width 400ms var(--ease-fluid);
+  bottom: clamp(1rem, 4dvh, 2.5rem);
+  align-items: flex-end;
+}
+
+.creative-loader__coords,
+.creative-loader__address {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-align: right;
+}
+.creative-loader__address {
+  text-align: left;
 }
 
 .creative-loader__meta-item {
@@ -5818,34 +6097,23 @@ html[data-locale="ru"] .nav-links a {
   white-space: nowrap;
 }
 
-/* Central Vertical Golden Ratio Flow - Single Focal Point (Cinematic 3D Layering) */
+/* Central Focal Point (Cinematic Layering) */
 .creative-loader__flow {
   position: relative;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 40rem;
+  height: 100%;
   margin: auto;
-  gap: 0.5rem;
 }
 
 @media (min-width: 1024px) {
-  .creative-loader__flow {
-    flex-direction: column;
-    max-width: 50rem;
-    justify-content: center;
-    gap: 0.75rem;
-  }
-  
   .creative-loader__station {
-    width: clamp(26rem, 50vh, 42rem);
-    height: clamp(26rem, 50vh, 42rem);
-  }
-  
-  .creative-loader__logo-image {
-    width: clamp(14rem, 25vh, 20rem) !important;
+    width: 100%;
+    height: clamp(28rem, 52dvh, 40rem);
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -5856,58 +6124,96 @@ html[data-locale="ru"] .nav-links a {
   align-items: center;
   justify-content: center;
   width: 100%;
+  gap: clamp(0.2rem, 0.75dvh, 0.5rem);
 }
 
 .creative-loader__brand {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.15rem;
+  align-items: flex-start;
+  gap: 0;
   width: 100%;
   overflow: hidden;
   margin: 0;
 }
 
 .creative-loader__logo-image {
-  width: clamp(10rem, 30vmin, 14rem);
+  width: clamp(3.75rem, 6vw, 5rem);
   height: auto;
   object-fit: contain;
   transition: width 400ms var(--ease-fluid);
 }
 
-.creative-loader__station {
-  position: relative;
-  z-index: 2;
-}
-
 /* Loading Percentage & Status metadata */
 .creative-loader__meta {
   position: relative;
-  z-index: 3;
+  z-index: 30;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.25rem;
-  margin-top: clamp(-1.5rem, -3vh, -0.5rem);
+  align-items: flex-end;
+  text-align: right;
+  gap: 0;
+  margin-top: clamp(0.35rem, 1dvh, 0.75rem);
 }
 
 .creative-loader__percentage {
-  font-family: var(--font-outfit), sans-serif;
-  font-size: clamp(1.4rem, 2.8vw, 1.85rem);
-  font-weight: 700;
+  font-family: var(--font-display), "Be Vietnam Pro", sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 0.9;
+  font-weight: 400;
   color: var(--accent-bronze);
-  letter-spacing: 0.08em;
-  text-shadow: 0 0 20px rgba(193, 154, 107, 0.3);
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 10px rgba(193, 154, 107, 0.2);
+  font-variant-numeric: tabular-nums;
+  min-width: 3.5ch;
 }
 
 .creative-loader__status {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text-primary);
   min-height: 1.2rem;
   display: inline-block;
+  opacity: 0.85;
+  min-width: 16rem;
+}
+
+/* Desktop information rail: one aligned sequence, secondary to the cocktail stage. */
+@media (min-width: 1024px) {
+  .creative-loader__brand-group {
+    align-items: flex-start;
+    justify-self: start;
+    width: min(100%, 18rem);
+    gap: clamp(0.3rem, 0.9dvh, 0.65rem);
+  }
+
+  .creative-loader__brand {
+    align-items: flex-start;
+  }
+
+  .creative-loader__logo-image {
+    width: clamp(4rem, 6vw, 5rem) !important;
+    margin: 0;
+  }
+
+  .creative-loader__meta {
+    align-items: flex-start;
+    text-align: left;
+    margin-top: clamp(0.45rem, 1.2dvh, 0.9rem);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1023px) {
+  .creative-loader__flow {
+    max-width: 34rem;
+  }
+
+  .creative-loader__station {
+    width: clamp(14rem, 33vmin, 20rem);
+    height: clamp(14rem, 33vmin, 20rem);
+  }
 }
 
 /* Frosted Glass Transition Curtain */
@@ -5924,9 +6230,35 @@ html[data-locale="ru"] .nav-links a {
 
 /* Responsive adjustment for compact screens */
 @media (max-width: 768px) {
-  .creative-loader__frame-top,
+  .creative-loader__overlay {
+    padding: max(1.25rem, env(safe-area-inset-top)) max(1.25rem, env(safe-area-inset-right)) max(1.5rem, env(safe-area-inset-bottom)) max(1.25rem, env(safe-area-inset-left));
+  }
+
+  .creative-loader__station {
+    width: clamp(11.5rem, 52vmin, 16rem);
+    height: clamp(11.5rem, 52vmin, 16rem);
+  }
+
+  .creative-loader__logo-image {
+    width: clamp(3.5rem, 15vmin, 4.5rem);
+  }
+
+  .creative-loader__coords,
+  .creative-loader__address {
+    display: none; /* Hide verbose text on mobile, keep logo and percentage */
+  }
+
+  .creative-loader__frame-top {
+    justify-content: center;
+  }
+
   .creative-loader__frame-bottom {
-    display: none; /* Hide top/bottom frame lines on mobile for clean vertical alignment */
+    justify-content: center;
+  }
+
+  .creative-loader__meta {
+    align-items: center;
+    text-align: center;
   }
 }
 
@@ -5950,3 +6282,5 @@ html[data-locale="ru"] .nav-links a {
   transform: translateY(110%);
   will-change: transform;
 }
+
+

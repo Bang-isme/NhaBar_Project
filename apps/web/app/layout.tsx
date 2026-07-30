@@ -63,8 +63,9 @@ export default function RootLayout({
       lang="vi"
       data-locale="vi"
       className={`${display.variable} ${outfit.variable} ${cyrillic.variable} ${body.variable}`}
+      suppressHydrationWarning
     >
-      <body>
+      <body suppressHydrationWarning>
         <LocaleProvider>
           <CreativeLoader />
           <SmoothScroll />

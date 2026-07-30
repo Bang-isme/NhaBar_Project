@@ -120,7 +120,7 @@ export function SiteHeader() {
       gsap.set([links, lang, toggle], { opacity: 0, y: 8 });
       gsap.set(brand, { opacity: 0, y: -6 });
 
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" }, paused: true });
       tl.to(brand, { opacity: 1, y: 0, duration: 0.65 })
         .to(
           links,
@@ -132,6 +132,18 @@ export function SiteHeader() {
           { opacity: 1, y: 0, stagger: 0.05, duration: 0.35 },
           "-=0.2",
         );
+
+      const playIntro = () => tl.play();
+      
+      if (document.documentElement.classList.contains("app-ready")) {
+        playIntro();
+      } else {
+        window.addEventListener("app-ready", playIntro, { once: true });
+      }
+
+      return () => {
+        window.removeEventListener("app-ready", playIntro);
+      };
     },
     { scope: root },
   );

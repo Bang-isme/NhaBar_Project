@@ -6,12 +6,12 @@ import Image from "next/image";
 import { useLocale } from "@/components/LocaleProvider";
 
 const STATUS_MESSAGES = [
-  "Khởi động không gian...",
-  "Lên nhạc...",
-  "Lắc cocktail...",
-  "Thả đá tinh khiết...",
-  "Gài lá & dù trang trí...",
-  "Sẵn sàng đón khách...",
+  "Chuẩn bị không gian...",
+  "Làm lạnh ly cocktail...",
+  "Định lượng nguyên liệu...",
+  "Pha chế hương vị...",
+  "Trang trí hoàn thiện...",
+  "Sẵn sàng phục vụ...",
 ];
 
 let hasLoadedThisSession = false;
@@ -70,6 +70,9 @@ export function CreativeLoader() {
       setActive(false);
       document.body.style.overflow = "";
       document.body.style.touchAction = "";
+      // Dispatch event so main page elements can reveal immediately
+      window.dispatchEvent(new Event("app-ready"));
+      document.documentElement.classList.add("app-ready");
       return;
     }
 
@@ -80,19 +83,8 @@ export function CreativeLoader() {
 
     const tl = gsap.timeline({
       onComplete: () => {
-        const maskState = { radius: 0 };
-        gsap.to(maskState, {
-          radius: 140,
-          duration: 1.15,
-          ease: "power3.inOut",
-          onUpdate: () => {
-            if (containerRef.current) {
-              const r = maskState.radius;
-              const maskVal = `radial-gradient(circle at 50% 50%, transparent ${r}%, black ${r + 8}%)`;
-              containerRef.current.style.webkitMaskImage = maskVal;
-              containerRef.current.style.maskImage = maskVal;
-            }
-          },
+        // --- Awwwards Exit Transition ---
+        const exitTl = gsap.timeline({
           onComplete: () => {
             setActive(false);
             hasLoadedThisSession = true;
@@ -103,8 +95,42 @@ export function CreativeLoader() {
               mainContent.setAttribute("tabindex", "-1");
               mainContent.focus();
             }
-          },
+          }
         });
+
+        // 1. Clean Exit: Fade and slide down the internal elements
+        exitTl.to([brandRef.current, percentTextRef.current, statusRef.current], {
+          opacity: 0,
+          y: 40,
+          duration: 0.6,
+          ease: "power3.in",
+          stagger: 0.05,
+        }, 0);
+        
+        exitTl.to([glassRef.current, flowRef.current], {
+          opacity: 0,
+          y: 40,
+          duration: 0.6,
+          ease: "power3.in",
+        }, 0.1);
+
+        // Hide bottom frames as well
+        const frameBottom = document.querySelector(".creative-loader__frame-bottom");
+        if (frameBottom) {
+          exitTl.to(frameBottom, { opacity: 0, y: 20, duration: 0.5, ease: "power3.in" }, 0);
+        }
+
+        // 2. Curtain Reveal: Slide the whole dark container UP
+        exitTl.to(containerRef.current, {
+          y: "-100%",
+          duration: 1.2,
+          ease: "expo.inOut",
+          onStart: () => {
+            // Signal the main page to start its entrance animations!
+            window.dispatchEvent(new Event("app-ready"));
+            document.documentElement.classList.add("app-ready");
+          }
+        }, 0.7);
       },
     });
 
@@ -428,26 +454,48 @@ export function CreativeLoader() {
 
       <div ref={overlayRef} className="creative-loader__overlay">
         <div className="creative-loader__frame-top" aria-hidden="true">
-          <span className="creative-loader__meta-item">EST. 2024 / CAFÉ & BAR</span>
-          <span className="creative-loader__meta-item">COORD. 16.0465° N, 108.2464° E</span>
+          <div ref={brandRef} className="creative-loader__brand" style={{ opacity: 0 }}>
+            <Image
+              src="/logo-nha-bar-clean.png"
+              alt="NHÀ Bar Logo"
+              width={160}
+              height={160}
+              priority
+              className="creative-loader__logo-image"
+            />
+          </div>
+          <div className="creative-loader__coords">
+            <span className="creative-loader__meta-item">EST. 2024 / CAFÉ & BAR</span>
+            <span className="creative-loader__meta-item">COORD. 16.0465° N, 108.2464° E</span>
+          </div>
         </div>
 
         <div ref={flowRef} className="creative-loader__flow" style={{ opacity: 0 }}>
-          <div className="creative-loader__brand-group">
-            <div ref={brandRef} className="creative-loader__brand" style={{ opacity: 0 }}>
-              <Image
-                src="/logo-nha-bar-clean.png"
-                alt="NHÀ Bar Logo"
-                width={400}
-                height={400}
-                priority
-                className="creative-loader__logo-image"
-              />
-            </div>
+          {/* Cinematic Spotlight & Gold Dust Backdrop */}
+          <div className="creative-loader__spotlight-backdrop" aria-hidden="true">
+            <div className="creative-loader__spotlight-glow" />
+            
+            {/* Shadow Play (Tropical Leaves) */}
+            <svg className="creative-loader__shadow-leaf creative-loader__shadow-leaf--left" viewBox="0 0 100 150" aria-hidden="true">
+              <path d="M-20,150 C30,100 50,50 80,-10 C50,20 20,40 -20,60 Z" />
+              <path d="M-20,150 C20,110 30,70 60,10 C30,40 0,60 -30,80 Z" />
+              <path d="M-20,150 C10,120 10,90 40,30 C10,60 -10,80 -40,100 Z" />
+            </svg>
+
+            <svg className="creative-loader__shadow-leaf creative-loader__shadow-leaf--right" viewBox="0 0 100 150" aria-hidden="true">
+              <path d="M-20,150 C30,100 50,50 80,-10 C50,20 20,40 -20,60 Z" />
+              <path d="M-20,150 C20,110 30,70 60,10 C30,40 0,60 -30,80 Z" />
+              <path d="M-20,150 C10,120 10,90 40,30 C10,60 -10,80 -40,100 Z" />
+            </svg>
+            <div className="creative-loader__gold-dust creative-loader__gold-dust--1" />
+            <div className="creative-loader__gold-dust creative-loader__gold-dust--2" />
+            <div className="creative-loader__gold-dust creative-loader__gold-dust--3" />
+            <div className="creative-loader__gold-dust creative-loader__gold-dust--4" />
+            <div className="creative-loader__gold-dust creative-loader__gold-dust--5" />
           </div>
 
           <div ref={glassRef} className="creative-loader__station" style={{ opacity: 0 }}>
-            <svg viewBox="-40 -150 240 320" className="creative-loader__glass-svg">
+            <svg viewBox="-40 -100 240 250" className="creative-loader__glass-svg">
               <defs>
                 {/* Rich Golden Amber Liquid Gradient */}
                 <linearGradient id="liquid-amber-grad" x1="0" y1="0" x2="0" y2="1">
@@ -675,16 +723,17 @@ export function CreativeLoader() {
               <path d="M28,40 C28,65 48,82 58,85" fill="none" stroke="#ffffff" strokeWidth="1.4" strokeLinecap="round" opacity="0.45" />
             </svg>
           </div>
-          
+        </div>
+
+        <div className="creative-loader__frame-bottom" aria-hidden="true">
+          <div className="creative-loader__address">
+            <span className="creative-loader__meta-item">35 NGÕ THÌ SĨ, MỸ AN, ĐÀ NẴNG</span>
+            <span className="creative-loader__meta-item">11:00 AM – LATE / MUSIC & DRINKS</span>
+          </div>
           <div className="creative-loader__meta">
             <span ref={percentTextRef} className="creative-loader__percentage">{percentage}%</span>
             <span ref={statusRef} className="creative-loader__status">{statusText}</span>
           </div>
-        </div>
-
-        <div className="creative-loader__frame-bottom" aria-hidden="true">
-          <span className="creative-loader__meta-item">35 NGÕ THÌ SĨ, MỸ AN, ĐÀ NẴNG</span>
-          <span className="creative-loader__meta-item">11:00 AM – LATE / MUSIC & DRINKS</span>
         </div>
       </div>
     </div>
